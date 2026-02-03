@@ -5,11 +5,12 @@ import Link from 'next/link'; // Standard Next.js Link component
 
 // --- OOP SKILL: Project Data ---
 class Project {
-  constructor(title, description, techStack, link) {
+  constructor(title, description, techStack, link, repoId) {
     this.title = title;
     this.description = description;
     this.techStack = techStack;
     this.link = link;
+    this.repoId = repoId; // <--- The new key
   }
 }
 
@@ -19,19 +20,22 @@ const myProjects = [
     "Crewmate Creator",
     "A full-stack character creation tool using React and Firebase. Features custom asset selection and real-time state management.",
     ["React", "Firebase", "Vite"],
-    "https://github.com/zaysstar/codepath-crewmate-creator" // Hypothetical link based on username
+    "https://github.com/zaysstar/codepath-crewmate-creator", // Hypothetical link based on username
+    "codepath-crewmate-creator"
   ),
   new Project(
     "Python Security API",
     "The backend powering this portfolio. Uses Pandas to analyze simulated threat logs and server diagnostics in real-time.",
     ["Python", "Pandas", "Next.js API"],
-    "https://github.com/zaysstar/portfolio-v1"
+    "https://github.com/zaysstar/portfolio-v1",
+    "portfolio-v1"
   ),
   new Project(
     "React Flashcards",
     "Interactive study application designed for rapid memory retention. Built with component-based architecture.",
     ["React.js", "CSS Modules", "State Management"],
-    "https://github.com/zaysstar/flipcard" 
+    "https://github.com/zaysstar/flipcard",
+    "flipcard"
   ),
 ];
 
@@ -99,8 +103,7 @@ export default function Home() {
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-lg font-bold text-slate-100 group-hover:text-green-400 transition-colors">{project.title}</h3>
                 <span className="text-[9px] text-green-500 font-mono bg-green-500/10 px-2 py-1 rounded border border-green-500/20">
-                   {/* We assume these sync with the backend */}
-                  {systemStatus ? `SYNC: ${systemStatus.last_sync}` : "..."}
+                  {systemStatus?.repo_dates ? `SYNC: ${systemStatus.repo_dates[project.repoId] || '...'}` : "..."}
                 </span>
               </div>
               <p className="text-slate-400 text-sm leading-relaxed mb-6 h-16 overflow-hidden">{project.description}</p>

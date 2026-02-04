@@ -34,7 +34,7 @@ const myProjects = [
 
   new Project(
     "React Flashcards",
-    "Interactive study application (currently based on general knowledge about foods) designed for rapid memory retention. Built with component-based architecture.",
+    "Interactive study application (currently based on general knowledge about food and nutrition) designed for rapid memory retention. Built with component-based architecture.",
     ["ReactJS", "CSS Modules", "State Management"],
     "https://github.com/zaysstar/flipcard",
     "flipcard"
@@ -48,8 +48,9 @@ export default function Home() {
   const [displayText, setDisplayText] = useState("");
   const [nameIndex, setNameIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const names = ["izayah rahming.", "esai.", "cyber_architect.", "developer."];
-  const typingSpeed = isDeleting ? 50 : 150;
+
+  const names = ["video game developer", "software developer", "business analyst"];
+  const typingSpeed = isDeleting ? 30 : 100;
 
   useEffect(() => {
     const handleTyping = () => {
@@ -57,7 +58,7 @@ export default function Home() {
       if (!isDeleting) {
         setDisplayText(currentName.substring(0, displayText.length + 1));
         if (displayText === currentName) {
-          setTimeout(() => setIsDeleting(true), 2000); // Pause at end
+          setTimeout(() => setIsDeleting(true), 500); // Pause at end
         }
       } else {
         setDisplayText(currentName.substring(0, displayText.length - 1));
@@ -100,7 +101,7 @@ export default function Home() {
           
           {/* LIVE STATUS BOX (Stays at the very top center) */}
           <div className="mb-12 p-4 bg-black/40 border border-green-900/50 rounded-lg max-w-sm w-full backdrop-blur-sm shadow-[0_0_15px_rgba(34,197,94,0.05)]">
-            <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3 text-center">System Metrics (Python + Pandas)</p>
+            <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3 text-center">System Metrics</p>
             {systemStatus ? (
               <div className="flex justify-between items-center font-mono text-xs">
                 <span className="flex items-center gap-2 text-green-400">
@@ -140,8 +141,13 @@ export default function Home() {
               
               <div className="max-w-xl mb-8">
                 <p className="text-slate-200 text-lg md:text-xl font-medium mb-2">
-                  cs + cyber student || aspiring video game/software developer
+                  cs + cyber student @ voorhees university
                 </p>
+                
+                <p className="text-slate-200 text-lg md:text-xl font-medium mb-2">
+                  <span className="text-white-400 font-mono"> aspiring |{displayText}<span className="blinking-cursor">|</span></span>
+                </p>
+
                 <p className="text-slate-500 text-sm md:text-base lowercase font-mono">
                   colorstack || codepath || extern || NSBE || NABA
                 </p>
@@ -149,6 +155,11 @@ export default function Home() {
 
               {/* Tech Stack Badges - Now aligned with the text */}
               <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                  <span className="px-4 py-2 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-sm font-mono hover:bg-yellow-900/40 transition">ReactJS</span>
+                  <span className="px-4 py-2 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-sm font-mono hover:bg-green-900/40 transition">Python</span>
+                  <span className="px-4 py-2 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-sm font-mono hover:bg-blue-900/40 transition">NextJS</span>
+                  <span className="px-4 py-2 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-sm font-mono hover:bg-indigo-900/40 transition">Pandas</span>
+                  
                   <span className="px-4 py-2 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-sm font-mono hover:bg-yellow-900/40 transition">ReactJS</span>
                   <span className="px-4 py-2 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-sm font-mono hover:bg-green-900/40 transition">Python</span>
                   <span className="px-4 py-2 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-sm font-mono hover:bg-blue-900/40 transition">NextJS</span>
@@ -163,10 +174,10 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 mb-20">
         <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 italic">
           <span className="w-1 h-6 bg-green-500"></span>
-          SELECTED_REPOS
+          PROJECT SHOWCASE
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {myProjects.map((project, index) => (
             <Link href={project.link} key={index} target="_blank" className="group p-6 bg-slate-900/40 border border-slate-800 rounded-xl hover:border-green-500/50 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] block">
               <div className="flex justify-between items-start mb-4">
@@ -178,7 +189,7 @@ export default function Home() {
               <p className="text-slate-400 text-sm leading-relaxed mb-6 h-16 overflow-hidden">{project.description}</p>
               <div className="flex flex-wrap gap-2">
                 {project.techStack.map((t) => (
-                  <span key={t} className="text-[9px] font-mono py-0.5 px-2 rounded bg-slate-950 text-slate-500 border border-slate-800 uppercase tracking-wider">{t}</span>
+                  <span key={t} className="text-[9px] font-mono py-0.5 px-2 rounded bg-slate-950 text-slate-500 border border-slate-700 uppercase tracking-wider">{t}</span>
                 ))}
               </div>
             </Link>

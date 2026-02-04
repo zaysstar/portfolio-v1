@@ -50,12 +50,17 @@ class SystemMonitor:
         ]
         
         data_points = []
-        current_time = datetime.now(self.tz)
+        utc_now = datetime.now(ZoneInfo("UTC"))
         
+        return {
+            "status": self.status,
+            "system_time": utc_now.isoformat(),
+        }
+                
         # Simulate 20 recent events
         for _ in range(20): 
             event = random.choice(events)
-            log_time = current_time - timedelta(minutes=random.randint(1, 60))
+            log_time = utc_now - timedelta(minutes=random.randint(1, 60))
             data_points.append({
                 "time_obj": log_time,
                 "timestamp": log_time.strftime("%H:%M:%S"),

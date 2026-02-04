@@ -18,22 +18,24 @@ class Project {
 const myProjects = [
   new Project(
     "Crewmate Creator",
-    "A full-stack character creation tool using React and Firebase. Features custom asset selection and real-time state management.",
-    ["React", "Firebase", "Vite"],
-    "https://github.com/zaysstar/codepath-crewmate-creator", // Hypothetical link based on username
+    "A full-stack character creation tool, based on the characters and various colors in the popular video game, 'Among Us'. Features custom asset selection and real-time state management.",
+    ["ReactJS", "Vite", "Firebase"],
+    "https://github.com/zaysstar/codepath-crewmate-creator",
     "codepath-crewmate-creator"
   ),
+
   new Project(
     "Python Security API",
     "The backend powering this portfolio. Uses Pandas to analyze simulated threat logs and server diagnostics in real-time.",
-    ["Python", "Pandas", "Next.js API"],
+    ["Python", "Pandas", "NextJS"],
     "https://github.com/zaysstar/portfolio-v1",
     "portfolio-v1"
   ),
+
   new Project(
     "React Flashcards",
-    "Interactive study application designed for rapid memory retention. Built with component-based architecture.",
-    ["React.js", "CSS Modules", "State Management"],
+    "Interactive study application (currently based on general knowledge about foods) designed for rapid memory retention. Built with component-based architecture.",
+    ["ReactJS", "CSS Modules", "State Management"],
     "https://github.com/zaysstar/flipcard",
     "flipcard"
   ),
@@ -41,6 +43,46 @@ const myProjects = [
 
 export default function Home() {
   const [systemStatus, setSystemStatus] = useState(null);
+
+  // --- TYPEWRITER LOGIC ---
+  const [displayText, setDisplayText] = useState("");
+  const [nameIndex, setNameIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const names = ["izayah rahming.", "esai.", "cyber_architect.", "developer."];
+  const typingSpeed = isDeleting ? 50 : 150;
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentName = names[nameIndex];
+      if (!isDeleting) {
+        setDisplayText(currentName.substring(0, displayText.length + 1));
+        if (displayText === currentName) {
+          setTimeout(() => setIsDeleting(true), 2000); // Pause at end
+        }
+      } else {
+        setDisplayText(currentName.substring(0, displayText.length - 1));
+        if (displayText === "") {
+          setIsDeleting(false);
+          setNameIndex((prev) => (prev + 1) % names.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, nameIndex]);
+
+  // --- NEW HELPER: Formats UTC to Viewer's Local Time ---
+  const toLocalTime = (isoString) => {
+    if (!isoString) return "...";
+    const date = new Date(isoString);
+    // This automatically detects the browser's timezone!
+    return date.toLocaleTimeString(undefined, { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      timeZoneName: 'short' 
+    });
+  };
 
   // Load Python Data
   useEffect(() => {
@@ -51,44 +93,71 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-green-500/30 pb-20">
+    <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-[#007474]/40 pb-20">
       
       {/* HERO SECTION */}
-      <section className="flex flex-col items-center justify-center pt-24 pb-12 px-4 text-center">
-        
-        {/* LIVE PYTHON STATUS INDICATOR */}
-        <div className="mb-8 p-4 bg-black/40 border border-green-900/50 rounded-lg max-w-sm w-full backdrop-blur-sm shadow-[0_0_15px_rgba(34,197,94,0.05)]">
-          <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3">Server Status</p>
-          {systemStatus ? (
-            <div className="flex justify-between items-center font-mono text-xs">
-              <span className="flex items-center gap-2 text-green-400">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+        <section className="flex flex-col items-center justify-center pt-24 pb-12 px-4">
+          
+          {/* LIVE STATUS BOX (Stays at the very top center) */}
+          <div className="mb-12 p-4 bg-black/40 border border-green-900/50 rounded-lg max-w-sm w-full backdrop-blur-sm shadow-[0_0_15px_rgba(34,197,94,0.05)]">
+            <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3 text-center">System Metrics (Python + Pandas)</p>
+            {systemStatus ? (
+              <div className="flex justify-between items-center font-mono text-xs">
+                <span className="flex items-center gap-2 text-green-400">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  {systemStatus.status}
                 </span>
-                {systemStatus.status}
-              </span>
-              <span className="text-slate-400 tracking-tighter">{systemStatus.system_time}</span>
+                <span className="text-slate-400 tracking-tighter">{toLocalTime(systemStatus.system_time)}</span>
+              </div>
+            ) : (
+              <div className="animate-pulse text-xs text-green-900 font-mono italic text-center">ESTABLISHING SECURE UPLINK...</div>
+            )}
+          </div>
+
+          {/* MAIN CONTENT WRAPPER: This creates the Side-by-Side layout */}
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 max-w-6xl w-full justify-center">
+            
+            {/* LEFT: CIRCULAR IMAGE AREA */}
+            <div className="relative group flex-shrink-0">
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full border-2 border-slate-800 overflow-hidden bg-slate-900">
+                <img 
+                  src="/me.jpg" 
+                  alt="Izayah Rahming"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
             </div>
-          ) : (
-            <div className="animate-pulse text-xs text-green-900 font-mono italic">ESTABLISHING SECURE UPLINK...</div>
-          )}
-        </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">
-          Izayah <span className="text-slate-600 font-light">Rahming</span>
-        </h1>
-        <p className="max-w-xl text-slate-400 text-lg md:text-xl mb-8">
-          Computer Science & Cybersecurity Student.
-        </p>
+            {/* RIGHT: TEXT & TECH STACK AREA */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-4 text-white">
+                izayah <span className="text-slate-600 font-light">rahming.</span>
+              </h1>
+              
+              <div className="max-w-xl mb-8">
+                <p className="text-slate-200 text-lg md:text-xl font-medium mb-2">
+                  cs + cyber student || aspiring video game/software developer
+                </p>
+                <p className="text-slate-500 text-sm md:text-base lowercase font-mono">
+                  colorstack || codepath || extern || NSBE || NABA
+                </p>
+              </div>
 
-        {/* Cleaned Tech Stack*/}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <span className="px-4 py-2 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-sm font-mono hover:bg-green-900/40 transition">React.js</span>
-            <span className="px-4 py-2 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-sm font-mono hover:bg-blue-900/40 transition">Python</span>
-            <span className="px-4 py-2 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-sm font-mono hover:bg-indigo-900/40 transition">Pandas</span>
-        </div>
-      </section>
+              {/* Tech Stack Badges - Now aligned with the text */}
+              <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                  <span className="px-4 py-2 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-sm font-mono hover:bg-yellow-900/40 transition">ReactJS</span>
+                  <span className="px-4 py-2 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-sm font-mono hover:bg-green-900/40 transition">Python</span>
+                  <span className="px-4 py-2 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-sm font-mono hover:bg-blue-900/40 transition">NextJS</span>
+                  <span className="px-4 py-2 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-sm font-mono hover:bg-indigo-900/40 transition">Pandas</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
 
       {/* PROJECTS GRID */}
       <section className="max-w-6xl mx-auto px-4 mb-20">

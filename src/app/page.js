@@ -207,8 +207,9 @@ export default function Home() {
             </h3>
             {systemStatus && (
                  <div className="text-xs font-mono text-slate-500">
-                    THREAT SCORE: <span className={systemStatus.analytics.threat_score > 50 ? "text-red-500" : "text-green-500"}>
-                        {systemStatus.analytics.threat_score}%
+                    THREAT SCORE: 
+                    <span className={systemStatus?.analytics?.threat_score > 50 ? "text-red-500" : "text-green-500"}>
+                    {systemStatus?.analytics?.threat_score || 0}%
                     </span>
                  </div>
             )}
@@ -245,7 +246,7 @@ export default function Home() {
                 {/* Column 2: The Aggregated Stats */}
                 <div>
                      <div className="text-xs text-slate-500 mb-4 uppercase tracking-wider">Event Distribution (Value_Counts)</div>
-                     {systemStatus ? Object.entries(systemStatus.analytics.distribution).map(([type, count]) => (
+                     {systemStatus?.analytics?.distribution ? Object.entries(systemStatus.analytics.distribution).map(([type, count]) => (
                         <div key={type} className="mb-3">
                             <div className="flex justify-between text-xs mb-1">
                                 <span className="text-slate-300">{type}</span>

@@ -73,15 +73,21 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, nameIndex]);
 
-  // --- NEW HELPER: Formats UTC to Viewer's Local Time ---
+  // TIME HELPER: Formats UTC to Viewer's Local Date & Time
   const toLocalTime = (isoString) => {
-    if (!isoString) return "...";
+    if (!isoString) return "SYNCING...";
+    
     const date = new Date(isoString);
-    // This automatically detects the browser's timezone!
-    return date.toLocaleTimeString(undefined, { 
-      hour: '2-digit', 
-      minute: '2-digit', 
-      timeZoneName: 'short' 
+    if (isNaN(date.getTime())) return isoString; 
+    
+    // "toLocaleString" converts the UTC string to the viewer's 
+    // browser timezone automatically.
+    return date.toLocaleString(undefined, { 
+      month: 'short',   // e.g., "Feb"
+      day: 'numeric',   // e.g., "04"
+      hour: 'numeric',  // e.g., "8"
+      minute: '2-digit',// e.g., "12"
+      timeZoneName: 'short' // e.g., "EST"
     });
   };
 
@@ -126,7 +132,7 @@ export default function Home() {
               <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
               <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full border-2 border-slate-800 overflow-hidden bg-slate-900">
                 <img 
-                  src="/me.jpg" 
+                  src="gitizayah-rahming.jpg" 
                   alt="Izayah Rahming"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />

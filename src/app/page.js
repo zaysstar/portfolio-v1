@@ -236,17 +236,25 @@ export default function Home() {
                 {/* Column 1: The Raw Logs */}
                 <div className="space-y-2 h-40 overflow-y-auto pr-2 border-r border-slate-900">
                     <div className="text-xs text-slate-500 mb-2 uppercase tracking-wider">Recent DataFrame Head(5)</div>
-                    {systemStatus ? systemStatus.security_logs.map((log, i) => (
-                        <div key={i} className="flex gap-2 text-xs">
-                            <span className="text-slate-600">[{log.timestamp}]</span>
-                            <span className={
-                                log.type === 'CRITICAL' ? 'text-red-500 font-bold' : 
-                                log.type === 'WARN' ? 'text-yellow-500' : 
-                                'text-green-500'
-                            }>{log.type}</span>
-                            <span className="text-slate-400 truncate">{log.msg}</span>
+                    
+                    {/* CRITICAL FIX: The safety check (|| []) prevents the crash */}
+                    {(systemStatus?.security_logs || []).length > 0 ? (
+                        systemStatus.security_logs.map((log, i) => (
+                            <div key={i} className="flex gap-2 text-xs">
+                                <span className="text-slate-600">[{log.timestamp}]</span>
+                                <span className={
+                                    log.type === 'CRITICAL' ? 'text-red-500 font-bold' : 
+                                    log.type === 'WARN' ? 'text-yellow-500' : 
+                                    'text-green-500'
+                                }>{log.type}</span>
+                                <span className="text-slate-400 truncate">{log.msg}</span>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="text-slate-600 animate-pulse text-xs">
+                           {systemStatus ? "Backend Error: Check logs" : "Loading..."}
                         </div>
-                    )) : <div className="text-slate-600 animate-pulse">Loading DataFrame...</div>}
+                    )}
                 </div>
 
                 {/* Column 2: The Aggregated Stats */}
@@ -269,7 +277,7 @@ export default function Home() {
                                 ></div>
                             </div>
                         </div>
-                     )) : null}
+                     )) : <div className="text-xs text-slate-500">Waiting for data...</div>}
                 </div>
             </div>
         </div>

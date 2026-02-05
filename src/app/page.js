@@ -132,7 +132,7 @@ export default function Home() {
               <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
               <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full border-2 border-slate-800 overflow-hidden bg-slate-900">
                 <img 
-                  src="gitizayah-rahming.jpg" 
+                  src="/izayah-rahming.jpg" 
                   alt="Izayah Rahming"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />

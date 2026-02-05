@@ -10,7 +10,7 @@ import pandas as pd
 # --- COMPONENT 1: REAL GITHUB DATA FETCHING ---
 class GitHubFetcher:
     def __init__(self):
-        # Looks for the token in Vercel Environment Variables
+        # Uses Vercel Env Var or defaults to None (Public API limit 60/hr)
         self.token = os.environ.get("GITHUB_TOKEN")
         self.username = "zaysstar"
         self.tz = ZoneInfo("America/New_York")
@@ -25,13 +25,18 @@ class GitHubFetcher:
             if response.status_code == 200:
                 data = response.json()
                 pushed_at = data.get("pushed_at")
+                
                 # Convert ISO 8601 string to Python DateTime
+                # Format: "2026-02-05T12:00:00Z"
                 dt = datetime.strptime(pushed_at, "%Y-%m-%dT%H:%M:%SZ")
-                # Convert to EST timezone
-                return dt.replace(tzinfo=ZoneInfo("UTC")).astimezone(self.tz).strftime("%m/%d/%Y")
+                
+                # Convert to EST timezone and Format: "Feb 05, 2026"
+                return dt.replace(tzinfo=ZoneInfo("UTC")).astimezone(self.tz).strftime("%b %d, %Y")
+            else:
+                return "Private/Error"
         except Exception as e:
             print(f"Error fetching {repo_name}: {e}")
-        return "N/A" # Fallback if API fails
+            return "N/A"
 
 # --- COMPONENT 2: PANDAS DATA ANALYTICS ---
 class SystemMonitor:
@@ -40,7 +45,7 @@ class SystemMonitor:
         self.tz = ZoneInfo("America/New_York") 
     
     def generate_analysis(self):
-        # 1. Generate Fake Raw Log Data
+        # 1. Setup Fake Events
         events = [
             {"type": "INFO", "msg": "Connection established"},
             {"type": "WARN", "msg": "Port scan detected"},
@@ -51,27 +56,25 @@ class SystemMonitor:
         
         data_points = []
         utc_now = datetime.now(ZoneInfo("UTC"))
-        
-        return {
-            "status": self.status,
-            "system_time": utc_now.isoformat(),
-        }
-                
-        # Simulate 20 recent events
+
+        # 2. Simulate 20 recent events
+        # (This code was previously unreachable!)
         for _ in range(20): 
             event = random.choice(events)
+            # Random time within last 60 minutes
             log_time = utc_now - timedelta(minutes=random.randint(1, 60))
+            
             data_points.append({
                 "time_obj": log_time,
-                "timestamp": log_time.strftime("%H:%M:%S"),
+                "timestamp": log_time.astimezone(self.tz).strftime("%H:%M:%S"), # Convert to EST for display
                 "type": event["type"],
                 "msg": event["msg"]
             })
             
-        # 2. Load into Pandas DataFrame
+        # 3. Load into Pandas DataFrame
         df = pd.DataFrame(data_points)
         
-        # 3. Perform Analytics
+        # 4. Perform Analytics
         type_counts = df['type'].value_counts().to_dict()
         
         # Calculate a "Threat Score"
@@ -84,9 +87,10 @@ class SystemMonitor:
         # Convert top 5 rows back to Dictionary for JSON
         recent_logs = df.head(5)[['timestamp', 'type', 'msg']].to_dict(orient='records')
         
+        # 5. Return the Full Payload
         return {
             "status": self.status,
-            "system_time": current_time.strftime("%I:%M %p %Z"),
+            "system_time": utc_now.isoformat(),
             "security_logs": recent_logs,
             "analytics": {
                 "distribution": type_counts,
@@ -102,12 +106,11 @@ class handler(BaseHTTPRequestHandler):
         monitor = SystemMonitor()
         
         # B. Get the Real Repo Dates
-        # Note: 'repoId' in React must match these keys
+        # IMPORTANT: These Keys match the 'repoId' in your React page.js
         repo_dates = {
-            "crewmate-creator": fetcher.get_last_commit_date("crewmate-creator"),
+            "codepath-crewmate-creator": fetcher.get_last_commit_date("codepath-crewmate-creator"),
             "portfolio-v1": fetcher.get_last_commit_date("portfolio-v1"),
-            # If you have a flashcards repo, add it here:
-            # "flashcards": fetcher.get_last_commit_date("flashcards-repo-name"),
+            "flipcard": fetcher.get_last_commit_date("flipcard"), 
         }
 
         # C. Get the Pandas Analytics

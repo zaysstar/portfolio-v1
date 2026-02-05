@@ -116,7 +116,7 @@ export default function Home() {
         <section className="flex flex-col items-center justify-center pt-24 pb-12 px-4">
           
           {/* LIVE STATUS BOX (Stays at the very top center) */}
-          <div className="mb-12 p-4 bg-black/40 border border-green-900/50 rounded-lg max-w-sm w-full backdrop-blur-sm shadow-[0_0_15px_rgba(34,197,94,0.05)]">
+          <div className="mb-12 p-4 bg-black/40 border border-green-900/50 rounded-lg max-w-lg w-full backdrop-blur-sm shadow-[0_0_15px_rgba(34,197,94,0.05)]">
             <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3 text-center">System Metrics</p>
             {systemStatus ? (
               <div className="flex justify-between items-center font-mono text-xs">

@@ -2,15 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link'; // Standard Next.js Link component
+import SpotifyPlayer from './components/SpotifyPlayer';
+import ProjectModal from './components/ProjectModal';
+import ContactTerminal from './components/ContactTerminal';
 
 // --- OOP SKILL: Project Data ---
 class Project {
-  constructor(title, description, techStack, link, repoId) {
+  constructor(title, description, longDescription, techStack, link, repoId, image) {
     this.title = title;
     this.description = description;
+    this.longDescription = longDescription;
     this.techStack = techStack;
     this.link = link;
-    this.repoId = repoId; // <--- The new key
+    this.repoId = repoId;
+    this.image = image; // <--- The new key
   }
 }
 
@@ -19,31 +24,36 @@ const myProjects = [
   new Project(
     "Crewmate Creator",
     "A full-stack character creation tool, based on the characters and various colors in the popular video game, 'Among Us'. Features custom asset selection and real-time state management.",
+    "Mission Objective: Create a highly interactive character editor. I reverse-engineered the Among Us art style to build a vector-based asset system. Key challenges included managing complex state updates for color layering and implementing real-time preview rendering.",
     ["ReactJS", "Vite", "Firebase"],
     "https://github.com/zaysstar/codepath-crewmate-creator",
     "codepath-crewmate-creator"
   ),
 
   new Project(
+    "React Flashcards",
+    "Interactive study application (currently based on general knowledge about food and nutrition) designed for rapid memory retention. Built with component-based architecture.",
+    "Mission Objective: Develop a flashcard app that allows users to create, review, and test themselves on various topics. Implemented spaced repetition algorithms to optimize learning efficiency and integrated local storage for persistent user data.",
+    ["ReactJS", "CSS Modules", "State Management"],
+    "https://github.com/zaysstar/flipcard",
+    "flipcard"
+  ),
+
+  new Project(
     "Python Security API",
     "The backend powering this portfolio. Uses Pandas to analyze simulated threat logs and server diagnostics in real-time.",
+    "Mission Objective: Build a secure API that processes and analyzes system logs to identify potential security threats. Leveraged Pandas for data manipulation and analysis, and implemented RESTful endpoints to serve processed data to the frontend.",
     ["Python", "Pandas", "NextJS"],
     "https://github.com/zaysstar/portfolio-v1",
     "portfolio-v1"
   ),
 
-  new Project(
-    "React Flashcards",
-    "Interactive study application (currently based on general knowledge about food and nutrition) designed for rapid memory retention. Built with component-based architecture.",
-    ["ReactJS", "CSS Modules", "State Management"],
-    "https://github.com/zaysstar/flipcard",
-    "flipcard"
-  ),
 ];
 
 export default function Home() {
   const [systemStatus, setSystemStatus] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [activeProject, setActiveProject] = useState(null);
 
   // --- TYPEWRITER LOGIC ---
   const [displayText, setDisplayText] = useState("");
@@ -178,7 +188,7 @@ export default function Home() {
                 <span className="px-3 py-1 bg-orange-900/20 border border-orange-700/40 text-orange-400 rounded text-xs font-mono hover:bg-orange-900/40 transition">Unreal Engine 5</span>
                 
                 {/* Backend & Data (Amber/Yellow/Green) */}
-                <span className="px-3 py-1 bg-amber-900/20 border border-amber-700/40 text-amber-400 rounded text-xs font-mono hover:bg-amber-900/40 transition">SQL</span>
+                <span className="px-3 py-1 bg-amber-900/20 border border-amber-700/40 text-amber-400 rounded text-xs font-mono hover:bg-amber-900/40 transition">PostgresSQL</span>
                 <span className="px-3 py-1 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-xs font-mono hover:bg-yellow-900/40 transition">Python</span>
                 <span className="px-3 py-1 bg-lime-900/20 border border-lime-700/40 text-lime-400 rounded text-xs font-mono hover:bg-lime-900/40 transition">Pandas</span>
                 <span className="px-3 py-1 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-xs font-mono hover:bg-green-900/40 transition">TensorFlow</span>
@@ -193,6 +203,45 @@ export default function Home() {
                 <span className="px-3 py-1 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-xs font-mono hover:bg-indigo-900/40 transition">Kotlin</span>
           </div>
 
+          {/* RESUME & SOCIAL ACTIONS */}
+              <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+                
+                {/* 1. The Resume Button */}
+                <a 
+                  href="/resume.pdf" 
+                  download="Izayah_Rahming_Resume.pdf"
+                  className="group relative inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 border border-slate-700 rounded-lg overflow-hidden hover:border-green-500/50 transition-all hover:shadow-[0_0_20px_rgba(34,197,94,0.1)]"
+                >
+                  {/* Hover background slide effect */}
+                  <div className="absolute inset-0 bg-green-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                  
+                  {/* Icon (Simple SVG Download Arrow) */}
+                  <svg className="w-5 h-5 text-slate-400 group-hover:text-green-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  </svg>
+                  
+                  {/* Text */}
+                  <span className="relative font-mono text-sm font-bold text-slate-300 group-hover:text-green-300 tracking-wide">
+                    DOWNLOAD RESUME
+                  </span>
+                </a>
+
+                {/* 2. (Optional) GitHub Link Button */}
+                <a 
+                  href="https://github.com/zaysstar" 
+                  target="_blank"
+                  className="group inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all"
+                >
+                  <svg className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-mono text-sm font-bold text-slate-300 group-hover:text-blue-300 tracking-wide">
+                    GITHUB
+                  </span>
+                </a>
+                
+              </div>
+
             </div>
           </div>
         </section>
@@ -206,11 +255,17 @@ export default function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {myProjects.map((project, index) => (
-            <Link href={project.link} key={index} target="_blank" className="group p-6 bg-slate-900/40 border border-slate-800 rounded-xl hover:border-green-500/50 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] block">
+            // 5. CHANGE Link TO div + onClick
+            <div 
+                key={index} 
+                onClick={() => setActiveProject(project)} // <--- Open Modal
+                className="group cursor-pointer p-6 bg-slate-900/40 border border-slate-800 rounded-xl hover:border-green-500/50 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] block"
+            >
+              {/* ... (Keep card content exactly the same) ... */}
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-lg font-bold text-slate-100 group-hover:text-green-400 transition-colors">{project.title}</h3>
                 <span className="text-[9px] text-green-500 font-mono bg-green-500/10 px-2 py-1 rounded border border-green-500/20">
-                  {systemStatus?.repo_dates ? `SYNC: ${systemStatus.repo_dates[project.repoId] || '...'}` : "..."}
+                  {systemStatus ? (systemStatus.repo_dates?.[project.repoId] || "OFFLINE") : "SYNC..."}
                 </span>
               </div>
               <p className="text-slate-400 text-sm leading-relaxed mb-6 h-16 overflow-hidden">{project.description}</p>
@@ -219,7 +274,7 @@ export default function Home() {
                   <span key={t} className="text-[9px] font-mono py-0.5 px-2 rounded bg-slate-950 text-slate-500 border border-slate-700 uppercase tracking-wider">{t}</span>
                 ))}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
@@ -304,6 +359,19 @@ export default function Home() {
         </div>
       </section>
 
-    </main>
-  );
-}
+    {/* 6. RENDER THE MODAL AT THE BOTTOM */}
+      <ProjectModal 
+        project={activeProject} 
+        isOpen={!!activeProject} 
+        onClose={() => setActiveProject(null)} 
+      />
+
+    {/* CONTACT FORM */}
+      <ContactTerminal />
+
+    {/* FLOATY MUSIC WIDGET */}
+      <SpotifyPlayer />
+
+        </main>
+      );
+    }

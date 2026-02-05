@@ -6,6 +6,7 @@ import requests
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import pandas as pd
+import psycopg2
 
 # --- COMPONENT 1: REAL GITHUB DATA FETCHING ---
 class GitHubFetcher:
@@ -131,3 +132,41 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(payload).encode('utf-8'))
         return
+    
+    def get_visitor_logs(self):
+        try:
+            # Connect using the Vercel Environment Variable
+            conn = psycopg2.connect(os.environ.get("POSTGRES_URL"))
+            cur = conn.cursor()
+            
+            # 1. Create Table if it doesn't exist (Auto-setup)
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS access_logs (
+                    id SERIAL PRIMARY KEY,
+                    username VARCHAR(50),
+                    message TEXT,
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
+            """)
+            
+            # 2. Fetch the last 5 signatures
+            cur.execute("SELECT username, message, timestamp FROM access_logs ORDER BY id DESC LIMIT 5;")
+            rows = cur.fetchall()
+            
+            # 3. Format for React
+            logs = []
+            for row in rows:
+                logs.append({
+                    "user": row[0],
+                    "msg": row[1],
+                    "time": row[2].strftime("%H:%M")
+                })
+                
+            cur.close()
+            conn.close()
+            return logs
+            
+        except Exception as e:
+            return [{"user": "SYSTEM", "msg": "DB Connection Failed", "time": "00:00"}]
+        
+# --- END OF FILE ---

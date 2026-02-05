@@ -106,10 +106,16 @@ class handler(BaseHTTPRequestHandler):
         monitor = SystemMonitor()
         
         # B. Get the Real Repo Dates
-        # IMPORTANT: These Keys match the 'repoId' in your React page.js
+        # The KEYS (left side) must match the 'repoId' in React EXACTLY.
+        # The VALUES (inside fetcher) must match your actual GitHub URL name.
         repo_dates = {
+            # React ID: "codepath-crewmate-creator"
             "codepath-crewmate-creator": fetcher.get_last_commit_date("codepath-crewmate-creator"),
+            
+            # React ID: "portfolio-v1"
             "portfolio-v1": fetcher.get_last_commit_date("portfolio-v1"),
+            
+            # React ID: "flipcard"
             "flipcard": fetcher.get_last_commit_date("flipcard"), 
         }
 

@@ -43,6 +43,7 @@ const myProjects = [
 
 export default function Home() {
   const [systemStatus, setSystemStatus] = useState(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   // --- TYPEWRITER LOGIC ---
   const [displayText, setDisplayText] = useState("");
@@ -71,23 +72,32 @@ export default function Home() {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, nameIndex]);
+  }, [displayText, isDeleting, nameIndex, typingSpeed]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date()); // Updates 'currentTime' every second
+    }, 1000);
+
+    // Cleanup: Stop the timer if the user leaves the page
+    return () => clearInterval(timer);
+  }, []);
 
   // TIME HELPER: Formats UTC to Viewer's Local Date & Time
-  const toLocalTime = (isoString) => {
-    if (!isoString) return "SYNCING...";
+  const formatTime = (dateObj) => {
+    if (!dateObj) return "SYNCING...";
     
-    const date = new Date(isoString);
-    if (isNaN(date.getTime())) return isoString; 
-    
-    // "toLocaleString" converts the UTC string to the viewer's 
-    // browser timezone automatically.
-    return date.toLocaleString(undefined, { 
-      month: 'short',   // e.g., "Feb"
-      day: 'numeric',   // e.g., "04"
-      hour: 'numeric',  // e.g., "8"
-      minute: '2-digit',// e.g., "12"
-      timeZoneName: 'short' // e.g., "EST"
+    return dateObj.toLocaleString(undefined, { 
+      weekday: "long",
+      day: '2-digit',
+      month: 'long', 
+      year: 'numeric',
+      hour: 'numeric', 
+      minute: '2-digit', 
+      second: '2-digit', // <--- Added seconds!
+      hour12: true,
+
+      timeZoneName: 'short' 
     });
   };
 
@@ -117,7 +127,9 @@ export default function Home() {
                   </span>
                   {systemStatus.status}
                 </span>
-                <span className="text-slate-400 tracking-tighter">{toLocalTime(systemStatus.system_time)}</span>
+                <span className="text-slate-400 tracking-tighter tabular-nums">
+                  {formatTime(currentTime)}
+                </span>
               </div>
             ) : (
               <div className="animate-pulse text-xs text-green-900 font-mono italic text-center">ESTABLISHING SECURE UPLINK...</div>
@@ -161,18 +173,27 @@ export default function Home() {
 
               {/* Tech Stack Badges - Now aligned with the text */}
               <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                  <span className="px-4 py-2 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-sm font-mono hover:bg-yellow-900/40 transition">ReactJS</span>
-                  <span className="px-4 py-2 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-sm font-mono hover:bg-green-900/40 transition">Python</span>
-                  <span className="px-4 py-2 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-sm font-mono hover:bg-blue-900/40 transition">NextJS</span>
-                  <span className="px-4 py-2 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-sm font-mono hover:bg-indigo-900/40 transition">Pandas</span>
-                  
-                  <span className="px-4 py-2 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-sm font-mono hover:bg-yellow-900/40 transition">ReactJS</span>
-                  <span className="px-4 py-2 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-sm font-mono hover:bg-green-900/40 transition">Python</span>
-                  <span className="px-4 py-2 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-sm font-mono hover:bg-blue-900/40 transition">NextJS</span>
-                  <span className="px-4 py-2 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-sm font-mono hover:bg-indigo-900/40 transition">Pandas</span>
-              </div>
-            </div>
+                {/* Systems & Game Dev (Red/Orange) */}
+                <span className="px-3 py-1 bg-red-900/20 border border-red-700/40 text-red-400 rounded text-xs font-mono hover:bg-red-900/40 transition">C++</span>
+                <span className="px-3 py-1 bg-orange-900/20 border border-orange-700/40 text-orange-400 rounded text-xs font-mono hover:bg-orange-900/40 transition">Unreal Engine 5</span>
+                
+                {/* Backend & Data (Amber/Yellow/Green) */}
+                <span className="px-3 py-1 bg-amber-900/20 border border-amber-700/40 text-amber-400 rounded text-xs font-mono hover:bg-amber-900/40 transition">SQL</span>
+                <span className="px-3 py-1 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-xs font-mono hover:bg-yellow-900/40 transition">Python</span>
+                <span className="px-3 py-1 bg-lime-900/20 border border-lime-700/40 text-lime-400 rounded text-xs font-mono hover:bg-lime-900/40 transition">Pandas</span>
+                <span className="px-3 py-1 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-xs font-mono hover:bg-green-900/40 transition">TensorFlow</span>
+                
+                {/* Frontend & Web (Teal/Cyan/Blue) */}
+                <span className="px-3 py-1 bg-teal-900/20 border border-teal-700/40 text-teal-400 rounded text-xs font-mono hover:bg-teal-900/40 transition">ReactJS</span>
+                <span className="px-3 py-1 bg-cyan-900/20 border border-cyan-700/40 text-cyan-400 rounded text-xs font-mono hover:bg-cyan-900/40 transition">NextJS</span>
+                <span className="px-3 py-1 bg-sky-900/20 border border-sky-700/40 text-sky-400 rounded text-xs font-mono hover:bg-sky-900/40 transition">Tailwind</span>
+                
+                {/* Typed Languages (Blue/Indigo/Purple) */}
+                <span className="px-3 py-1 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-xs font-mono hover:bg-blue-900/40 transition">TypeScript</span>
+                <span className="px-3 py-1 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-xs font-mono hover:bg-indigo-900/40 transition">Kotlin</span>
+          </div>
 
+            </div>
           </div>
         </section>
 

@@ -220,7 +220,7 @@ export default function Home() {
 
             {/* --- RESTORED 3DS TECH STACK --- */}
           {/* 'p-4' adds headroom so the jump animation doesn't get cut off. '-ml-4' realigns it to the left. */}
-          <div className="w-full overflow-x-auto pb-4 mb-8 custom-scrollbar p-4 -ml-4">
+          <div className="w-full pb-4 mb-8 custom-scrollbar p-4 -ml-4">
              <div className="flex gap-3">
                {[
                  // Systems & Game Dev (Red/Orange)

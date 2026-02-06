@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import MusicPlayer from "./components/MusicPlayer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,10 +20,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        
+        {/* The Page Content loads here */}
         {children}
+
+        {/* The Player lives here, floating above everything */}
+        <MusicPlayer />  {/* <--- 2. ADD THIS TAG */}
+
       </body>
     </html>
   );

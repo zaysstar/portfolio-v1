@@ -17,7 +17,7 @@ export default function QuestLogPage() {
     },
         {
       levels: ["CURRENT", "MEMBER_POSITION"],
-      title: "Active Member",
+      title: "Member",
       org: "M.A.L.E.S.",
       date: "January 2026 - present",
       desc: "Engaging in initiatives that promote general holisticness, academic excellence and cultural awareness among male students on campus.",
@@ -33,24 +33,7 @@ export default function QuestLogPage() {
       loot: ["Networking", "Event Planning", "Advocacy", "Fundraising"],
       image: "/images/uncf-ambassador.jpg"
     },
-    {
-      levels: ["CURRENT", "OFFICER_POSITION"],
-      title: "Chaplain",
-      org: "Student Veterans of America, VU Chapter",
-      date: "Oct 2025",
-      desc: "Selected for the top-tier leadership summit in Washington D.C. Focused on advocacy, policy, and organizational management for student veterans.",
-      loot: ["Policy", "Federal Advocacy", "Team Building"],
-      image: "/images/sva-dc-trip.jpg",
-      
-      subRoles: [
-        { 
-          levels: ["DELEGATE", "TRAVEL_QUEST"],
-          title: "SVA Leadership Institute Fellow", 
-          date: "Oct 2025",
-          desc: "Selected for the top-tier leadership summit in Washington D.C. Focused on advocacy, policy, and organizational management for student veterans." 
-        }
-      ]
-    },
+    
     {
       levels: ["CURRENT", "OFFICER_POSITION"],
       title: "Senior Class Vice President",
@@ -58,9 +41,8 @@ export default function QuestLogPage() {
       date: "Sep 2025 - Present",
       desc: "Serving as the strategic voice for the senior class. Bridging the gap between the student body and administration. Partnering with the President to orchestrate senior-focused events and manage budgets.",
       loot: ["Leadership", "Budgeting", "Crisis Mgmt", "Public Speaking"],
-      image: "/images/sga-team.jpg",
+      image: "/452301774_1562940110923259_3701710326811625647_n.jpg",
       
-      // --- NEW: PREVIOUS ROLES / SUB-LEVELS ---
       subRoles: [
         { 
           levels: ["MEMBER"],
@@ -92,7 +74,7 @@ export default function QuestLogPage() {
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Collegiate Member at-Large | Southern Region",
       org: "National Association of Black Accountants (NABA)",
-      date: "July 2024 - Present",
+      date: "July 2025 - Present",
       desc: "Participating in financial literacy workshops and professional development conferences.",
       loot: ["Finance", "Professionalism"],
       image: null
@@ -101,12 +83,30 @@ export default function QuestLogPage() {
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Collegiate Member at-Large | Region II",
       org: "National Society of Black Engineers (NSBE)",
-      date: "June 2024 - Present",
+      date: "June 2025 - Present",
       desc: "Engaging in STEM outreach and engineering networking events.",
       loot: ["Engineering", "STEM Outreach"],
       image: null
     }
     ,
+    {
+      levels: ["CURRENT", "OFFICER_POSITION"],
+      title: "Chaplain",
+      org: "Student Veterans of America, VU Chapter",
+      date: "Apr 2025 - Present",
+      desc: "Selected for the top-tier leadership summit in Washington D.C. Focused on advocacy, policy, and organizational management for student veterans.",
+      loot: ["Policy", "Federal Advocacy", "Team Building"],
+      image: "/images/sva-dc-trip.jpg",
+      
+      subRoles: [
+        { 
+          levels: ["DELEGATE", "TRAVEL_QUEST"],
+          title: "SVA Leadership Institute Fellow", 
+          date: "Oct 2025",
+          desc: "Selected for the top-tier leadership summit in Washington D.C. Focused on advocacy, policy, and organizational management for student veterans." 
+        }
+      ]
+    },
     {
       levels: ["OFFICER_POSITION"],
       title: "Recording Secretary",
@@ -149,14 +149,12 @@ export default function QuestLogPage() {
 
       {/* TIMELINE CONTENT */}
       <section className="max-w-4xl mx-auto">
-        <div className="relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12 pb-4">
+        <div className="relative border-l-2 border-slate-800 ml-3 md:ml-0 space-y-12 pb-8">
           {leadershipQuests.map((quest, index) => (
-            <div key={index} className="relative pl-8 md:pl-12 group">
+            <div key={index} className="relative pl-8 md:pl-9 group">
               
               {/* THE NODE (Blue Nodes) */}
-              <div className={`absolute -left-[9px] top-0 w-5 h-5 rounded-full border-4 border-slate-900 ${
-                  index === 0 ? "bg-blue-500 animate-pulse" : "bg-slate-600 group-hover:bg-blue-500"
-              } transition-colors z-10`}></div>
+              <div className={`absolute -left-[11px] top-0 w-5 h-5 rounded-full border-4 border-slate-900 bg-blue-500 group-hover:bg-blue-400 group-hover:shadow-[0_0_10px_rgba(0,0,255,0.5)] transition-all z-10`}></div>
 
               {/* CARD CONTAINER */}
               <div className="flex flex-col md:flex-row gap-6 bg-slate-900/30 p-6 rounded-lg border border-slate-800 hover:border-blue-500/50 transition-all hover:-translate-y-1 hover:shadow-lg hover:bg-slate-900/60 items-center md:items-start">

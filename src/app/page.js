@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link'; // Standard Next.js Link component
-import SpotifyPlayer from './components/SpotifyPlayer';
 import ProjectModal from './components/ProjectModal';
 import ContactTerminal from './components/ContactTerminal';
 
@@ -256,45 +255,6 @@ export default function Home() {
                 </div>
               </div>
 
-          {/* RESUME & SOCIAL ACTIONS */}
-              <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
-                
-                {/* 1. The Resume Button */}
-                <a 
-                  href="/resume.pdf" 
-                  download="Izayah_Rahming_Resume.pdf"
-                  className="group relative inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 border border-slate-700 rounded-lg overflow-hidden hover:border-green-500/50 transition-all hover:shadow-[0_0_20px_rgba(34,197,94,0.1)]"
-                >
-                  {/* Hover background slide effect */}
-                  <div className="absolute inset-0 bg-green-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                  
-                  {/* Icon (Simple SVG Download Arrow) */}
-                  <svg className="w-5 h-5 text-slate-400 group-hover:text-green-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                  </svg>
-                  
-                  {/* Text */}
-                  <span className="relative font-mono text-sm font-bold text-slate-300 group-hover:text-green-300 tracking-wide">
-                    DOWNLOAD RESUME
-                  </span>
-                </a>
-
-                {/* 2. (Optional) GitHub Link Button */}
-                <a 
-                  href="https://github.com/zaysstar" 
-                  target="_blank"
-                  className="group inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all"
-                >
-                  <svg className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                  </svg>
-                  <span className="font-mono text-sm font-bold text-slate-300 group-hover:text-blue-300 tracking-wide">
-                    GITHUB
-                  </span>
-                </a>
-                
-              </div>
-
             </div>
           </div>
         </section>
@@ -333,7 +293,71 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PANDAS ANALYTICS & LOGS */}
+    
+    {/* NAVIGATION GRID (The 4 Colored Cards) */}
+      <section className="max-w-6xl mx-auto px-4 mb-20">
+        
+        {/* GRID: 1 col mobile, 2 cols tablet/desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]">
+          
+          {/* 1. RED CARD (Stats) - MOVED TO FIRST POSITION */}
+          <Link href="/bio-statss" className="group block relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-red-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(239,68,68,0.1)]">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(239,68,68,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(239,68,68,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+              <div className="w-14 h-14 bg-red-900/20 rounded-full flex items-center justify-center border border-red-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                 <svg className="w-7 h-7 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              </div>
+              <div className="text-center z-10">
+                <h3 className="text-lg font-bold text-slate-200 group-hover:text-red-400 tracking-tight">CHARACTER STATS</h3>
+                <p className="text-xs text-slate-500 font-mono mt-1">Bio, Skills & Traits</p>
+              </div>
+          </Link>
+
+          {/* 2. BLUE CARD (Leadership) */}
+          <Link href="/quest-log" className="group block relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-blue-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+              <div className="w-14 h-14 bg-blue-900/20 rounded-full flex items-center justify-center border border-blue-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                 <svg className="w-7 h-7 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+              </div>
+              <div className="text-center z-10">
+                <h3 className="text-lg font-bold text-slate-200 group-hover:text-blue-400 tracking-tight">LEADERSHIP LOG</h3>
+                <p className="text-xs text-slate-500 font-mono mt-1">Officer Roles & Involvement</p>
+              </div>
+          </Link>
+
+          {/* 3. YELLOW CARD (Achievements) */}
+          <Link href="/achievements" className="group block relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-yellow-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)]">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(234,179,8,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(234,179,8,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+              <div className="w-14 h-14 bg-yellow-900/20 rounded-full flex items-center justify-center border border-yellow-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                 <svg className="w-7 h-7 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+              </div>
+              <div className="text-center z-10">
+                <h3 className="text-lg font-bold text-slate-200 group-hover:text-yellow-400 tracking-tight">ACHIEVEMENTS</h3>
+                <p className="text-xs text-slate-500 font-mono mt-1">Honors, Awards & Medals</p>
+              </div>
+          </Link>
+
+          {/* 4. PURPLE CARD (Comms) */}
+          <Link href="/comms" className="group block relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-purple-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]">
+              {/* Purple Grid BG */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+              
+              <div className="w-14 h-14 bg-purple-900/20 rounded-full flex items-center justify-center border border-purple-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                 {/* Satellite Icon */}
+                 <svg className="w-7 h-7 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                 </svg>
+              </div>
+
+              <div className="text-center z-10">
+                <h3 className="text-lg font-bold text-slate-200 group-hover:text-purple-400 tracking-tight">COMMS RELAY</h3>
+                <p className="text-xs text-slate-500 font-mono mt-1">Connect & Socials</p>
+              </div>
+          </Link>
+
+        </div>
+      </section>
+
+  {/* PANDAS ANALYTICS & LOGS */}
       <section className="max-w-4xl mx-auto px-4 mb-10">
         
         {/* Analytics Header */}
@@ -413,51 +437,6 @@ export default function Home() {
             </div>
         </div>
       </section>
-    
-    {/* QUEST & ACHIEVEMENT ACCESS TERMINALS */}
-      <section className="max-w-4xl mx-auto px-4 mb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-          {/* LEFT: LEADERSHIP LOG */}
-          <Link href="/quest-log" className="group block">
-            <div className="relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-blue-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] h-full">
-              {/* Blue Grid BG */}
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
-              
-              <div className="w-14 h-14 bg-blue-900/20 rounded-full flex items-center justify-center border border-blue-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
-                 <svg className="w-7 h-7 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                 </svg>
-              </div>
-
-              <div className="text-center z-10">
-                <h3 className="text-lg font-bold text-slate-200 group-hover:text-blue-400 tracking-tight">LEADERSHIP LOG</h3>
-                <p className="text-xs text-slate-500 font-mono mt-1">Officer Roles & Involvement</p>
-              </div>
-            </div>
-          </Link>
-
-          {/* RIGHT: ACHIEVEMENTS LOG */}
-          <Link href="/achievements" className="group block">
-            <div className="relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-yellow-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] h-full">
-              {/* Yellow Grid BG */}
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(234,179,8,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(234,179,8,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
-              
-              <div className="w-14 h-14 bg-yellow-900/20 rounded-full flex items-center justify-center border border-yellow-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
-                 <svg className="w-7 h-7 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                 </svg>
-              </div>
-
-              <div className="text-center z-10">
-                <h3 className="text-lg font-bold text-slate-200 group-hover:text-yellow-400 tracking-tight">ACHIEVEMENTS</h3>
-                <p className="text-xs text-slate-500 font-mono mt-1">Honors, Awards & Medals</p>
-              </div>
-            </div>
-          </Link>
-
-        </div>
-      </section>
 
     {/* 6. RENDER THE MODAL AT THE BOTTOM */}
       <ProjectModal 
@@ -465,12 +444,6 @@ export default function Home() {
         isOpen={!!activeProject} 
         onClose={() => setActiveProject(null)} 
       />
-
-    {/* CONTACT FORM */}
-      <ContactTerminal />
-
-    {/* FLOATY MUSIC WIDGET */}
-      <SpotifyPlayer />
 
     {/* E-SHOP MARQUEE FOOTER */}
       {marqueeStyle}

@@ -44,7 +44,7 @@ export default function AchievementsPage() {
       date: "Fall 2025",
       desc: "Awarded 'Honors' distinction for Intro to Web Development (WEB101). Completed multiple rigorous technical tracks to master modern software development standards.",
       loot: ["React Certificate", "Android Certificate", "Honors Status"],
-      image: "/images/codepath-cert.jpg",
+      image: "/H3Kw4tkF_400x400.jpg",
       
       // --- UPDATED SUB-QUESTS WITH LINKS ---
       // Replace the '#' with your actual certificate URLs
@@ -105,12 +105,12 @@ export default function AchievementsPage() {
 
       {/* TIMELINE CONTENT */}
       <section className="max-w-4xl mx-auto">
-        <div className="relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12 pb-4">
+        <div className="relative border-l-2 border-slate-800 ml-3 md:ml-0 space-y-12 pb-4">
           {achievements.map((item, index) => (
-            <div key={index} className="relative pl-8 md:pl-12 group">
+            <div key={index} className="relative pl-8 md:pl-9 group">
               
               {/* THE NODE (Gold for Trophies) */}
-              <div className={`absolute -left-[9px] top-0 w-5 h-5 rounded-full border-4 border-slate-900 bg-yellow-500 group-hover:bg-yellow-400 group-hover:shadow-[0_0_10px_rgba(234,179,8,0.5)] transition-all z-10`}></div>
+              <div className={`absolute -left-[11px] top-0 w-5 h-5 rounded-full border-4 border-slate-900 bg-yellow-500 group-hover:bg-yellow-400 group-hover:shadow-[0_0_10px_rgba(234,179,8,0.5)] transition-all z-10`}></div>
 
               {/* CARD CONTAINER */}
               <div className="flex flex-col md:flex-row gap-6 bg-slate-900/30 p-6 rounded-lg border border-slate-800 hover:border-yellow-500/50 transition-all hover:-translate-y-1 hover:shadow-lg hover:bg-slate-900/60 items-center md:items-start">

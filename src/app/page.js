@@ -218,42 +218,40 @@ export default function Home() {
                 </p>
               </div>
 
-            {/* Tech Stack Badges - Now aligned with the text */}
-              {/* 3DS STYLE SKILL GRID */}
-              {/* 'p-4' adds headroom so the jump animation doesn't get cut off. '-ml-4' realigns it to the left. */}
-              <div className="w-full overflow-x-auto pb-2 mb-8 custom-scrollbar p-4 -ml-4">
-                <div className="flex gap-3">
-                  {[
-                    // Systems & Game Dev (Red/Orange)
-                    { name: "C++", color: "bg-red-900 border-red-500" },
-                    { name: "UE5", color: "bg-orange-800 border-orange-500" },
-                    
-                    // Backend & Data (Amber/Yellow/Green)
-                    { name: "Postgres", color: "bg-amber-800 border-amber-500" },
-                    { name: "Python", color: "bg-yellow-700 border-yellow-400" },
-                    { name: "Pandas", color: "bg-lime-800 border-lime-500" },
-                    { name: "TensorFlow", color: "bg-green-800 border-green-500" },
-                    
-                    // Frontend & Web (Teal/Cyan/Blue)
-                    { name: "ReactJS", color: "bg-teal-800 border-teal-400" },
-                    { name: "NextJS", color: "bg-cyan-900 border-cyan-500" },
-                    { name: "Tailwind", color: "bg-sky-800 border-sky-400" },
-                    
-                    // Typed Languages (Blue/Indigo)
-                    { name: "TypeScript", color: "bg-blue-800 border-blue-500" },
-                    { name: "Kotlin", color: "bg-indigo-800 border-indigo-400" }
-                  ].map((skill, i) => (
-                    <div key={i} className="group relative flex-shrink-0 w-20 h-20 cursor-pointer">
-                      
-                      {/* The Cartridge / App Icon */}
-                      <div className={`w-full h-full rounded-lg border-t-1 border-l-1 border-r-1 border-b-2 ${skill.color} shadow-lg flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-[0_4px_0_rgba(0,0,0,0.5)] transition-transform duration-200 group-hover:-translate-y-2 group-hover:shadow-[0_8px_0_rgba(0,0,0,0.5)] z-10 relative`}>
-                        <span className="drop-shadow-md text-center px-1">{skill.name}</span>
-                      </div>
-
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* --- RESTORED 3DS TECH STACK --- */}
+          {/* 'p-4' adds headroom so the jump animation doesn't get cut off. '-ml-4' realigns it to the left. */}
+          <div className="w-full overflow-x-auto pb-4 mb-8 custom-scrollbar p-4 -ml-4">
+             <div className="flex gap-3">
+               {[
+                 // Systems & Game Dev (Red/Orange)
+                 { name: "C++", color: "bg-red-900 border-red-500" },
+                 { name: "UE5", color: "bg-orange-800 border-orange-500" },
+                 
+                 // Backend & Data (Amber/Yellow/Green)
+                 { name: "Postgres", color: "bg-amber-800 border-amber-500" },
+                 { name: "Python", color: "bg-yellow-700 border-yellow-400" },
+                 { name: "Pandas", color: "bg-lime-800 border-lime-500" },
+                 { name: "TensorFlow", color: "bg-green-800 border-green-500" },
+                 
+                 // Frontend & Web (Teal/Cyan/Blue)
+                 { name: "ReactJS", color: "bg-teal-800 border-teal-400" },
+                 { name: "NextJS", color: "bg-cyan-900 border-cyan-500" },
+                 { name: "Tailwind", color: "bg-sky-800 border-sky-400" },
+                 
+                 // Typed Languages (Blue/Indigo)
+                 { name: "TypeScript", color: "bg-blue-800 border-blue-500" },
+                 { name: "Kotlin", color: "bg-indigo-800 border-indigo-400" }
+               ].map((skill, i) => (
+                 <div key={i} className="group relative flex-shrink-0 w-20 h-20 cursor-pointer">
+                   
+                   {/* The Cartridge / App Icon */}
+                   <div className={`w-full h-full rounded-lg border-t-1 border-l-1 border-r-1 border-b-2 ${skill.color} shadow-lg flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-[0_4px_0_rgba(0,0,0,0.5)] transition-transform duration-200 group-hover:-translate-y-2 group-hover:shadow-[0_8px_0_rgba(0,0,0,0.5)] z-10 relative`}>
+                     <span className="drop-shadow-md text-center px-1">{skill.name}</span>
+                   </div>
+                 </div>
+               ))}
+             </div>
+          </div>
 
             </div>
           </div>

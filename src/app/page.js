@@ -8,14 +8,15 @@ import ContactTerminal from './components/ContactTerminal';
 
 // --- OOP SKILL: Project Data ---
 class Project {
-  constructor(title, description, longDescription, techStack, link, repoId, image) {
+  constructor(title, description, longDescription, techStack, link, repoId, image, gallery = []) {
     this.title = title;
     this.description = description;
     this.longDescription = longDescription;
     this.techStack = techStack;
     this.link = link;
     this.repoId = repoId;
-    this.image = image; // <--- The new key
+    this.image = image;
+    this.gallery = gallery; // <--- The new key
   }
 }
 
@@ -27,7 +28,8 @@ const myProjects = [
     "Mission Objective: Create a highly interactive character editor. I reverse-engineered the Among Us art style to build a vector-based asset system. Key challenges included managing complex state updates for color layering and implementing real-time preview rendering.",
     ["ReactJS", "Vite", "Firebase"],
     "https://github.com/zaysstar/codepath-crewmate-creator",
-    "codepath-crewmate-creator"
+    "codepath-crewmate-creator",
+    "/crewmate-gameplay.gif",
   ),
 
   new Project(
@@ -48,7 +50,22 @@ const myProjects = [
     "portfolio-v1"
   ),
 
+  new Project(
+    "Epic Games Externship",
+    "Selected for the intensive Epic Games Externship. Focused on environment design and Unreal Engine 5 workflows.",
+    "I was selected for this highly competitive externship program where I worked directly with Unreal Engine 5. My primary focus was on 'World Building' and level design. I utilized Blueprints for gameplay logic and Lumen for real-time global illumination. I collaborated with a team to prototype a playable environment, learning industry-standard version control (Perforce) and asset pipeline management along the way.",
+    ["Unreal Engine 5", "Blueprints", "C++", "Level Design"],
+    "https://www.epicgames.com", // Link to Epic or your specific showcase
+    "epic-externship", // No GitHub repo for this, date will show "OFFLINE" or "N/A"
+    "/epic.svg", // <--- Main Hero Image (Put this in public folder)
+    [
+        "/epic.svg", // <--- Gallery Image 1 (Put in public folder)
+        "/extern.jpg", // <--- Gallery Image 2 (Put in public folder)
+    ]
+  ),
+
 ];
+
 
 export default function Home() {
   const [systemStatus, setSystemStatus] = useState(null);
@@ -119,6 +136,27 @@ export default function Home() {
       .catch((err) => console.error("Failed to fetch python data", err));
   }, []);
 
+  const marqueeStyle = (
+    <style jsx global>{`
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-scroll {
+        animation: scroll 30s linear infinite;
+      }
+    `}</style>
+  );
+
+  const footerMessages = [
+    "Welcome to Zay's Terminal!",
+    "New Project Available: Epic Games Externship",
+    "Current Location: Denmark, SC",
+    "Status: ONLINE",
+    "Enjoy the coding vibes!",
+    "Contact me for collaborations!",
+  ];
+
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-[#007474]/40 pb-20">
       
@@ -181,27 +219,42 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Tech Stack Badges - Now aligned with the text */}
-              <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                {/* Systems & Game Dev (Red/Orange) */}
-                <span className="px-3 py-1 bg-red-900/20 border border-red-700/40 text-red-400 rounded text-xs font-mono hover:bg-red-900/40 transition">C++</span>
-                <span className="px-3 py-1 bg-orange-900/20 border border-orange-700/40 text-orange-400 rounded text-xs font-mono hover:bg-orange-900/40 transition">Unreal Engine 5</span>
-                
-                {/* Backend & Data (Amber/Yellow/Green) */}
-                <span className="px-3 py-1 bg-amber-900/20 border border-amber-700/40 text-amber-400 rounded text-xs font-mono hover:bg-amber-900/40 transition">PostgresSQL</span>
-                <span className="px-3 py-1 bg-yellow-900/20 border border-yellow-700/40 text-yellow-400 rounded text-xs font-mono hover:bg-yellow-900/40 transition">Python</span>
-                <span className="px-3 py-1 bg-lime-900/20 border border-lime-700/40 text-lime-400 rounded text-xs font-mono hover:bg-lime-900/40 transition">Pandas</span>
-                <span className="px-3 py-1 bg-green-900/20 border border-green-700/40 text-green-400 rounded text-xs font-mono hover:bg-green-900/40 transition">TensorFlow</span>
-                
-                {/* Frontend & Web (Teal/Cyan/Blue) */}
-                <span className="px-3 py-1 bg-teal-900/20 border border-teal-700/40 text-teal-400 rounded text-xs font-mono hover:bg-teal-900/40 transition">ReactJS</span>
-                <span className="px-3 py-1 bg-cyan-900/20 border border-cyan-700/40 text-cyan-400 rounded text-xs font-mono hover:bg-cyan-900/40 transition">NextJS</span>
-                <span className="px-3 py-1 bg-sky-900/20 border border-sky-700/40 text-sky-400 rounded text-xs font-mono hover:bg-sky-900/40 transition">Tailwind</span>
-                
-                {/* Typed Languages (Blue/Indigo/Purple) */}
-                <span className="px-3 py-1 bg-blue-900/20 border border-blue-700/40 text-blue-400 rounded text-xs font-mono hover:bg-blue-900/40 transition">TypeScript</span>
-                <span className="px-3 py-1 bg-indigo-900/20 border border-indigo-700/40 text-indigo-400 rounded text-xs font-mono hover:bg-indigo-900/40 transition">Kotlin</span>
-          </div>
+            {/* Tech Stack Badges - Now aligned with the text */}
+              {/* 3DS STYLE SKILL GRID */}
+              {/* 'p-4' adds headroom so the jump animation doesn't get cut off. '-ml-4' realigns it to the left. */}
+              <div className="w-full overflow-x-auto pb-2 mb-8 custom-scrollbar p-4 -ml-4">
+                <div className="flex gap-3">
+                  {[
+                    // Systems & Game Dev (Red/Orange)
+                    { name: "C++", color: "bg-red-900 border-red-500" },
+                    { name: "UE5", color: "bg-orange-800 border-orange-500" },
+                    
+                    // Backend & Data (Amber/Yellow/Green)
+                    { name: "Postgres", color: "bg-amber-800 border-amber-500" },
+                    { name: "Python", color: "bg-yellow-700 border-yellow-400" },
+                    { name: "Pandas", color: "bg-lime-800 border-lime-500" },
+                    { name: "TensorFlow", color: "bg-green-800 border-green-500" },
+                    
+                    // Frontend & Web (Teal/Cyan/Blue)
+                    { name: "ReactJS", color: "bg-teal-800 border-teal-400" },
+                    { name: "NextJS", color: "bg-cyan-900 border-cyan-500" },
+                    { name: "Tailwind", color: "bg-sky-800 border-sky-400" },
+                    
+                    // Typed Languages (Blue/Indigo)
+                    { name: "TypeScript", color: "bg-blue-800 border-blue-500" },
+                    { name: "Kotlin", color: "bg-indigo-800 border-indigo-400" }
+                  ].map((skill, i) => (
+                    <div key={i} className="group relative flex-shrink-0 w-20 h-20 cursor-pointer">
+                      
+                      {/* The Cartridge / App Icon */}
+                      <div className={`w-full h-full rounded-lg border-t-1 border-l-1 border-r-1 border-b-2 ${skill.color} shadow-lg flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-[0_4px_0_rgba(0,0,0,0.5)] transition-transform duration-200 group-hover:-translate-y-2 group-hover:shadow-[0_8px_0_rgba(0,0,0,0.5)] z-10 relative`}>
+                        <span className="drop-shadow-md text-center px-1">{skill.name}</span>
+                      </div>
+
+                    </div>
+                  ))}
+                </div>
+              </div>
 
           {/* RESUME & SOCIAL ACTIONS */}
               <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
@@ -246,6 +299,7 @@ export default function Home() {
           </div>
         </section>
 
+      
       {/* PROJECTS GRID */}
       <section className="max-w-6xl mx-auto px-4 mb-20">
         <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 italic">
@@ -297,6 +351,7 @@ export default function Home() {
             )}
         </div>
 
+        
         {/* The Terminal */}
         <div className="bg-black border border-slate-800 rounded-lg overflow-hidden font-mono text-sm shadow-2xl">
             <div className="bg-slate-900 px-4 py-2 border-b border-slate-800 flex items-center justify-between">
@@ -358,6 +413,51 @@ export default function Home() {
             </div>
         </div>
       </section>
+    
+    {/* QUEST & ACHIEVEMENT ACCESS TERMINALS */}
+      <section className="max-w-4xl mx-auto px-4 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          {/* LEFT: LEADERSHIP LOG */}
+          <Link href="/quest-log" className="group block">
+            <div className="relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-blue-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] h-full">
+              {/* Blue Grid BG */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+              
+              <div className="w-14 h-14 bg-blue-900/20 rounded-full flex items-center justify-center border border-blue-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                 <svg className="w-7 h-7 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                 </svg>
+              </div>
+
+              <div className="text-center z-10">
+                <h3 className="text-lg font-bold text-slate-200 group-hover:text-blue-400 tracking-tight">LEADERSHIP LOG</h3>
+                <p className="text-xs text-slate-500 font-mono mt-1">Officer Roles & Involvement</p>
+              </div>
+            </div>
+          </Link>
+
+          {/* RIGHT: ACHIEVEMENTS LOG */}
+          <Link href="/achievements" className="group block">
+            <div className="relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-yellow-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] h-full">
+              {/* Yellow Grid BG */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(234,179,8,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(234,179,8,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+              
+              <div className="w-14 h-14 bg-yellow-900/20 rounded-full flex items-center justify-center border border-yellow-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                 <svg className="w-7 h-7 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                 </svg>
+              </div>
+
+              <div className="text-center z-10">
+                <h3 className="text-lg font-bold text-slate-200 group-hover:text-yellow-400 tracking-tight">ACHIEVEMENTS</h3>
+                <p className="text-xs text-slate-500 font-mono mt-1">Honors, Awards & Medals</p>
+              </div>
+            </div>
+          </Link>
+
+        </div>
+      </section>
 
     {/* 6. RENDER THE MODAL AT THE BOTTOM */}
       <ProjectModal 
@@ -371,6 +471,23 @@ export default function Home() {
 
     {/* FLOATY MUSIC WIDGET */}
       <SpotifyPlayer />
+
+    {/* E-SHOP MARQUEE FOOTER */}
+      {marqueeStyle}
+      
+      <div className="fixed bottom-0 left-0 w-full h-8 bg-slate-900 border-t border-green-500/30 flex items-center overflow-hidden z-50">
+        <div className="animate-scroll whitespace-nowrap flex gap-8 text-xs font-mono text-green-500/70 uppercase tracking-widest">
+            
+            {/* The Magic: We spread the array twice to create the seamless loop */}
+            {[...footerMessages, ...footerMessages].map((msg, index) => (
+                <span key={index} className="flex items-center gap-8">
+                    {msg}
+                    <span className="text-green-900">///</span>
+                </span>
+            ))}
+
+        </div>
+      </div>
 
         </main>
       );

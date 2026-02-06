@@ -243,7 +243,7 @@ export default function Home() {
           {/* Using grid-cols-4 for mobile to force 4 items per row */}
           {/* md:flex allows it to unwrap and breathe on desktop */}
           <div className="w-full pb-2 mb-8">
-            <div className="grid grid-cols-5 gap-3 md:flex md:flex-wrap">
+            <div className="grid grid-cols-4 gap-3 md:flex md:flex-wrap">
               {techStack.map((skill, i) => (
                 <div key={i} className="group relative w-full md:w-20 aspect-square cursor-pointer">
                   

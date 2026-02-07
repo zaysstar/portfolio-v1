@@ -99,10 +99,10 @@ export default function AchievementsPage() {
 
     {
       levels: ["1ST_PLACE_TROPHY 🏆", "CYBER_SECURITY"],
-      title: "ADMI Symposium 2025 Champion",
+      title: "ADMI Symposium 2025 Cybersecurity Champion",
       org: "ADMI (Association of Computer Science Departments at Minority Institutions)",
       date: "March 28th, 2025",
-      desc: "Secured 1st Place in the Team Cybersecurity Competition against multiple universities (FAMU, NCCU, Spelman). Demonstrated advanced threat detection and defense strategies under time pressure.",
+      desc: "Secured 1st Place in the Team Cybersecurity Competition against several universities (Morehouse, Spelman, FAMU and NCCU). Demonstrated advanced threat detection and defense strategies in capture-the-flag (CTF) challenges, while under time pressure.",
       loot: ["Gold Medal", "Cyber Defense", "Teamwork"],
       image: null,
       url: "https://voorhees.edu/voorhees-university-wins-first-place-in-cybersecurity-at-admi-symposium-2025/" 

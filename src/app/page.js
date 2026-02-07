@@ -187,7 +187,7 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center px-4 pt-10 pb-12 relative">
         
         {/* THE 3D ARTIFACT (Absolute positioned on desktop) */}
-        <div className="hidden md:block absolute top-10 right-10 w-[400px] h-[400px] z-0 opacity-80 hover:opacity-100 transition-opacity">
+        <div className="hidden md:block absolute top-10 right-2 w-[400px] h-[400px] z-0 opacity-80 hover:opacity-100 transition-opacity">
            <CyberShape />
         </div>
 

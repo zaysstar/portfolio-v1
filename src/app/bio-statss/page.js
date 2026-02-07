@@ -102,7 +102,7 @@ export default function CharacterStatsPage() {
 
                      <div>
                         {/* TYPEWRITER NAME */}
-                        <h2 className="text-lg font-bold text-white tracking-wide h-6 flex items-center">
+                        <h2 className="text-md font-bold text-white tracking-wide h-6 flex items-center">
                             {typedName}
                             <span className="animate-pulse text-red-500 ml-1">_</span>
                         </h2>

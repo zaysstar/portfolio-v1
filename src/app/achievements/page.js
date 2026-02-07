@@ -24,43 +24,12 @@ export default function AchievementsPage() {
 
   // --- ACHIEVEMENT DATA ---
   const achievements = [
-    // --- COMPETITIVE WINS ---
-    {
-      levels: ["1ST_PLACE_TROPHY 🏆", "CYBER_SECURITY"],
-      title: "ADMI Symposium 2025 Champion",
-      org: "ADMI (Association of Computer Science Departments at Minority Institutions)",
-      date: "March 18th, 2025",
-      desc: "Secured 1st Place in the Team Cybersecurity Competition against multiple universities (FAMU, NCCU, Spelman). Demonstrated advanced threat detection and defense strategies under time pressure.",
-      loot: ["Gold Medal", "Cyber Defense", "Teamwork"],
-      image: "/images/admi-medal.jpg" 
-    },
-
-    // --- ACADEMIC HONORS ---
-    {
-      levels: ["ACADEMIC_EXCELLENCE", "MAX_STATS"],
-      title: "University Scholastic Honors",
-      org: "Voorhees University",
-      date: "2023 - Present",
-      desc: "Consistently recognized for superior academic performance. Maintained a 3.73 Major GPA while balancing leadership roles.",
-      loot: ["President's List (1x)", "Dean's List (5x)", "Academic Medals (2x)"],
-      image: "/images/academic-awards.jpg"
-    },
-    {
-      levels: ["HONOR_SOCIETY", "ELITE_MEMBER"],
-      title: "Alpha Kappa Mu Honors Society | Mu Epsilon Chapter",
-      org: "W. Franklin Evans Honors College",
-      date: "March 2025",
-      desc: "Inducted into the prestigious national honor society for juniors and seniors with a GPA of 3.3 or higher. Represents the top tier of scholarly achievement.",
-      loot: ["Scholastic Discipline", "High GPA"],
-      image: null
-    },
-
     // --- TECHNICAL CERTIFICATIONS (CODEPATH) ---
     {
       levels: ["CERTIFICATION", "DISTINCTION"],
-      title: "CodePath Web Development Honors",
+      title: "CodePath Student/Emerging Engineer",
       org: "CodePath",
-      date: "Fall 2025",
+      date: "July 2025 - present",
       desc: "Awarded 'Honors' distinction for Intro to Web Development (WEB101). Completed multiple rigorous technical tracks to master modern software development standards.",
       loot: ["React Certificate", "Android Certificate", "Honors Status"],
       image: "/H3Kw4tkF_400x400.jpg",
@@ -88,18 +57,65 @@ export default function AchievementsPage() {
         }
       ]
     },
+{
+      levels: ["CERTIFICATION", "INDUSTRY_SELECTION", "RARE_DROP"],
+      title: "Extern",
+      org: "Extern",
+      date: "August 2025 - present",
+      desc: "Applied and selected for Extern's free national program that connects top students with industry leaders. Currently completing specialized training and projects in partnership with major companies.",
+      loot: ["Extern Certificate", "Industry Mentorship", "Exclusive Projects"],
+      image: "/extern.jpg",
+      
+      subQuests: [
+        { 
+            title: "Epic Games - Interactive 3D Game Design", 
+            date: "FUTURE_CERTIFICATION",
+            url: "#" 
+        },
+        { 
+            title: "Snap Inc. - AR Development", 
+            date: "FUTURE_CERTIFICATION",
+            url: "#" 
+        },
+        { 
+            title: "Beats by Dre - Data Analytics: Qualitative & Quantitative Insights", 
+            date: "FUTURE_CERTIFICATION",
+            url: "#" 
+        },
 
-    // --- EXTERNSHIPS ---
+      ]
+    },
     {
-      levels: ["INDUSTRY_SELECTION", "RARE_DROP"],
-      title: "Epic Games Externship",
-      org: "Epic Games / HBCU Direct",
-      date: "Aug 2025 - Oct 2025",
-      desc: "Selected from a competitive national pool of HBCU students for specialized training in Unreal Engine 5 and 3D Interactive Design.",
-      loot: ["Unreal Engine 5", "World Building", "Asset Pipeline"],
-      image: "/epic.svg"
-    }
+      levels: ["1ST_PLACE_TROPHY 🏆", "CYBER_SECURITY"],
+      title: "ADMI Symposium 2025 Champion",
+      org: "ADMI (Association of Computer Science Departments at Minority Institutions)",
+      date: "March 18th, 2025",
+      desc: "Secured 1st Place in the Team Cybersecurity Competition against multiple universities (FAMU, NCCU, Spelman). Demonstrated advanced threat detection and defense strategies under time pressure.",
+      loot: ["Gold Medal", "Cyber Defense", "Teamwork"],
+      image: "/images/admi-medal.jpg" 
+    },
+
+    {
+      levels: ["HONOR_SOCIETY", "ELITE_MEMBER"],
+      title: "Alpha Kappa Mu Honors Society | Mu Epsilon Chapter",
+      org: "W. Franklin Evans Honors College",
+      date: "March 2025",
+      desc: "Inducted into the prestigious national honor society for juniors and seniors with a GPA of 3.3 or higher. Represents the top tier of scholarly achievement.",
+      loot: ["Scholastic Discipline", "High GPA"],
+      image: null
+    },
+        {
+      levels: ["ACADEMIC_EXCELLENCE", "MAX_STATS"],
+      title: "University Scholastic Honors",
+      org: "Voorhees University",
+      date: "2023 - Present",
+      desc: "Consistently recognized for superior academic performance. Maintained a 3.73 Major GPA while balancing leadership roles.",
+      loot: ["President's List (1x)", "Dean's List (5x)", "Academic Medals (2x)"],
+      image: "/images/academic-awards.jpg"
+    },
   ];
+
+
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-[#007474]/40 pb-20 p-4 md:p-12">

@@ -104,7 +104,7 @@ export default function AchievementsPage() {
       date: "March 28th, 2025",
       desc: "Secured 1st Place in the Team Cybersecurity Competition against multiple universities (FAMU, NCCU, Spelman). Demonstrated advanced threat detection and defense strategies under time pressure.",
       loot: ["Gold Medal", "Cyber Defense", "Teamwork"],
-      image: "/admi.png",
+      image: null,
       url: "https://voorhees.edu/voorhees-university-wins-first-place-in-cybersecurity-at-admi-symposium-2025/" 
     },
 

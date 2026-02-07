@@ -153,7 +153,8 @@ export default function Home() {
     
     // Typed Languages (Blue/Indigo)
     { name: "TypeScript", color: "bg-blue-800 border-blue-500" },
-    { name: "Kotlin", color: "bg-indigo-800 border-indigo-400" }
+    { name: "Kotlin", color: "bg-indigo-800 border-indigo-400" },
+    { name: "Linux", color: "bg-purple-800 border-purple-400" }
   ];
 
   const marqueeStyle = (

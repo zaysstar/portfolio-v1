@@ -202,6 +202,25 @@ export default function QuestLogPage() {
       subRoles: [] 
     },
     {
+      id: "stem-club-01",
+      levels: ["FORMER", "CHAIR_POSITION"],
+      title: "Graphic Design Chair",
+      org: "STEM Club Committee",
+      date: "Jan 2024 - May 2024",
+      desc: "Spearheaded visual communications for the STEM Club. Designed flyers, digital assets, and event branding to increase student engagement in STEM initiatives.",
+      loot: ["Graphic Design", "Branding", "Promotion"],
+      image: null,
+      previousRoles: [
+        {
+          levels: ["MEMBER"],
+          title: "General Member",
+          date: "Jan 2024 - May 2024",
+          desc: "Participated in planning and executing STEM awareness events on campus."
+        }
+      ],
+      subRoles: []
+    },
+    {
       id: "hcasc-01",
       levels: ["CURRENT", "CAPTAIN"],
       title: "Team Captain ('26)",

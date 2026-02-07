@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function AchievementsPage() {
   
@@ -17,7 +18,7 @@ export default function AchievementsPage() {
       } else {
         clearInterval(interval);
       }
-    }, 30); // Typing speed (30ms)
+    }, 30); 
 
     return () => clearInterval(interval);
   }, []);
@@ -30,34 +31,35 @@ export default function AchievementsPage() {
       title: "CodePath Student/Emerging Engineer",
       org: "CodePath",
       date: "July 2025 - present",
-      desc: "Awarded 'Honors' distinction for Intro to Web Development (WEB101). Completed multiple rigorous technical tracks to master modern software development standards.",
+      desc: "Completed multiple rigorous technical tracks to master modern software development standards.",
       loot: ["React Certificate", "Android Certificate", "Honors Status"],
       image: "/H3Kw4tkF_400x400.jpg",
+      url: "https://www.codepath.org/", // Optional Main Link
       
       subQuests: [
         { 
             title: "WEB101: Intro to Web Development (HONORS)", 
-            date: "Certified",
+            status: "CERTIFIED",
             url: "https://www.codepath.org/" 
         },
         { 
             title: "TIP102: Intermediate Technical Interview Prep", 
-            date: "Certified",
+            status: "CERTIFIED",
             url: "#" 
         },
         { 
             title: "WEB102: Intermediate Web Development", 
-            date: "Certified",
+            status: "CERTIFIED",
             url: "#" 
         },
         { 
             title: "AND101: Intro to Android Development", 
-            date: "Certified",
+            status: "CERTIFIED",
             url: "#" 
         }
       ]
     },
-{
+    {
       levels: ["CERTIFICATION", "INDUSTRY_SELECTION", "RARE_DROP"],
       title: "Extern",
       org: "Extern",
@@ -69,30 +71,20 @@ export default function AchievementsPage() {
       subQuests: [
         { 
             title: "Epic Games - Interactive 3D Game Design", 
-            date: "FUTURE_CERTIFICATION",
+            status: "LOCKED",
             url: "#" 
         },
         { 
             title: "Snap Inc. - AR Development", 
-            date: "FUTURE_CERTIFICATION",
+            status: "LOCKED",
             url: "#" 
         },
         { 
-            title: "Beats by Dre - Data Analytics: Qualitative & Quantitative Insights", 
-            date: "FUTURE_CERTIFICATION",
+            title: "Beats by Dre - Data Analytics", 
+            status: "LOCKED",
             url: "#" 
         },
-
       ]
-    },
-    {
-      levels: ["1ST_PLACE_TROPHY 🏆", "CYBER_SECURITY"],
-      title: "ADMI Symposium 2025 Champion",
-      org: "ADMI (Association of Computer Science Departments at Minority Institutions)",
-      date: "March 18th, 2025",
-      desc: "Secured 1st Place in the Team Cybersecurity Competition against multiple universities (FAMU, NCCU, Spelman). Demonstrated advanced threat detection and defense strategies under time pressure.",
-      loot: ["Gold Medal", "Cyber Defense", "Teamwork"],
-      image: "/images/admi-medal.jpg" 
     },
 
     {
@@ -104,18 +96,28 @@ export default function AchievementsPage() {
       loot: ["Scholastic Discipline", "High GPA"],
       image: null
     },
-        {
+
+    {
+      levels: ["1ST_PLACE_TROPHY 🏆", "CYBER_SECURITY"],
+      title: "ADMI Symposium 2025 Champion",
+      org: "ADMI (Association of Computer Science Departments at Minority Institutions)",
+      date: "March 28th, 2025",
+      desc: "Secured 1st Place in the Team Cybersecurity Competition against multiple universities (FAMU, NCCU, Spelman). Demonstrated advanced threat detection and defense strategies under time pressure.",
+      loot: ["Gold Medal", "Cyber Defense", "Teamwork"],
+      image: "/admi.png",
+      url: "https://voorhees.edu/voorhees-university-wins-first-place-in-cybersecurity-at-admi-symposium-2025/" 
+    },
+
+    {
       levels: ["ACADEMIC_EXCELLENCE", "MAX_STATS"],
       title: "University Scholastic Honors",
       org: "Voorhees University",
-      date: "2023 - Present",
+      date: "March 2024 - present",
       desc: "Consistently recognized for superior academic performance. Maintained a 3.73 Major GPA while balancing leadership roles.",
       loot: ["President's List (1x)", "Dean's List (5x)", "Academic Medals (2x)"],
       image: "/images/academic-awards.jpg"
     },
   ];
-
-
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-[#007474]/40 pb-20 p-4 md:p-12">
@@ -127,7 +129,6 @@ export default function AchievementsPage() {
                 ACHIEVEMENTS <span className="text-yellow-500">.log</span>
             </h1>
             
-            {/* TYPEWRITER SUBTITLE */}
             <p className="text-slate-500 font-mono text-sm h-5 flex items-center">
                 {typedSubtitle}
                 <span className="animate-pulse text-yellow-500 ml-1">_</span>
@@ -142,116 +143,145 @@ export default function AchievementsPage() {
       {/* TIMELINE CONTENT */}
       <section className="max-w-4xl mx-auto">
         <div className="relative border-l-2 border-slate-800 ml-3 md:ml-0 space-y-12 pb-4">
-          {achievements.map((item, index) => (
-            <div key={index} className="relative pl-8 md:pl-9 group">
-              
-              {/* THE NODE (Gold for Trophies) */}
-              <div className={`absolute -left-[11px] top-0 w-5 h-5 rounded-full border-4 border-slate-900 bg-yellow-500 group-hover:bg-yellow-400 group-hover:shadow-[0_0_10px_rgba(234,179,8,0.5)] transition-all z-10`}></div>
+          {achievements.map((item, index) => {
+            
+            const unlocked = item.subQuests ? item.subQuests.filter(q => q.status === "CERTIFIED") : [];
+            const locked = item.subQuests ? item.subQuests.filter(q => q.status !== "CERTIFIED") : [];
 
-              {/* CARD CONTAINER */}
-              <div className="flex flex-col md:flex-row gap-6 bg-slate-900/30 p-6 rounded-lg border border-slate-800 hover:border-yellow-500/50 transition-all hover:-translate-y-1 hover:shadow-lg hover:bg-slate-900/60 items-center md:items-start">
+            return (
+                <motion.div 
+                    key={index} 
+                    className="relative pl-8 md:pl-9 group"
+                    initial={{ opacity: 0, y: 50 }}         
+                    whileInView={{ opacity: 1, y: 0 }}      
+                    transition={{ 
+                        duration: 0.5, 
+                        ease: "easeOut",
+                        delay: index * 0.1 
+                    }}
+                    viewport={{ once: true, margin: "-50px" }}
+                >
                 
-                {/* LEFT SIDE: TEXT CONTENT */}
-                <div className="flex-1 w-full">
-                  
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    {item.levels.map((lvl, i) => (
-                      <span key={i} className="text-[10px] font-mono text-yellow-500 border border-yellow-500/30 px-1 rounded uppercase tracking-wider">
-                        {lvl}
-                      </span>
-                    ))}
-                    <span className="text-xs text-slate-500 font-mono ml-1">
-                      {item.date}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-slate-200 group-hover:text-yellow-400 transition-colors">
-                    {item.title}
-                  </h3>
-                  <div className="text-sm text-green-500 font-mono mb-3">
-                    @{item.org}
-                  </div>
-                  
-                  <p className="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
-                    {item.desc}
-                  </p>
+                    {/* THE NODE */}
+                    <div className={`absolute -left-[11px] top-0 w-5 h-5 rounded-full border-4 border-slate-900 bg-yellow-500 group-hover:bg-yellow-400 group-hover:shadow-[0_0_10px_rgba(234,179,8,0.5)] transition-all z-10`}></div>
 
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {item.loot.map((lootItem, i) => (
-                      <span key={i} className="text-[10px] uppercase tracking-wide px-2 py-1 rounded bg-black border border-slate-700 text-slate-500 font-mono group-hover:border-yellow-500/30 group-hover:text-yellow-500/70 transition-colors">
-                        {lootItem}
-                      </span>
-                    ))}
-                  </div>
+                    {/* CARD CONTAINER */}
+                    <div className="flex flex-col md:flex-row gap-6 bg-slate-900/30 p-6 rounded-lg border border-slate-800 hover:border-yellow-500/50 transition-all hover:-translate-y-1 hover:shadow-lg hover:bg-slate-900/60 items-center md:items-start">
+                        
+                        {/* LEFT SIDE: TEXT CONTENT */}
+                        <div className="flex-1 w-full">
+                        
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                                {item.levels.map((lvl, i) => (
+                                <span key={i} className="text-[10px] font-mono text-yellow-500 border border-yellow-500/30 px-1 rounded uppercase tracking-wider">
+                                    {lvl}
+                                </span>
+                                ))}
+                                <span className="text-xs text-slate-500 font-mono ml-1">
+                                {item.date}
+                                </span>
+                            </div>
+                            
+                            {/* --- TITLE LOGIC: CHECK FOR URL --- */}
+                            <h3 className="text-xl font-bold text-slate-200 group-hover:text-yellow-400 transition-colors flex items-center gap-2">
+                                {item.url ? (
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-2">
+                                        {item.title}
+                                        {/* External Link Icon */}
+                                        <svg className="w-4 h-4 text-yellow-500 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                        </svg>
+                                    </a>
+                                ) : (
+                                    item.title
+                                )}
+                            </h3>
 
-                  {/* SUB-QUESTS */}
-                  {item.subQuests && (
-                    <div className="mt-4 pt-4 border-t border-slate-800/50 w-full">
-                        <div className="text-[10px] text-slate-600 font-mono uppercase mb-3 tracking-widest">Unlocked Certificates:</div>
-                        <div className="space-y-3">
-                            {item.subQuests.map((sub, j) => {
-                                
-                                const content = (
-                                  <>
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-yellow-500 text-xs">📜</span>
-                                        <span className="text-xs text-slate-300 font-mono group-hover/sub:text-yellow-200 transition-colors">
-                                            {sub.title}
-                                        </span>
-                                        {sub.url && (
-                                            <svg className="w-3 h-3 text-slate-600 group-hover/sub:text-yellow-500 opacity-0 group-hover/sub:opacity-100 transition-all -translate-x-2 group-hover/sub:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                            </svg>
-                                        )}
+                            <div className="text-sm text-green-500 font-mono mb-3">
+                                @{item.org}
+                            </div>
+                            
+                            <p className="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+                                {item.desc}
+                            </p>
+
+                            <div className="flex flex-wrap gap-2 mb-2">
+                                {item.loot.map((lootItem, i) => (
+                                <span key={i} className="text-[10px] uppercase tracking-wide px-2 py-1 rounded bg-black border border-slate-700 text-slate-500 font-mono group-hover:border-yellow-500/30 group-hover:text-yellow-500/70 transition-colors">
+                                    {lootItem}
+                                </span>
+                                ))}
+                            </div>
+
+                            {/* --- UNLOCKED CERTIFICATES --- */}
+                            {unlocked.length > 0 && (
+                                <div className="mt-4 pt-4 border-t border-slate-800/50 w-full">
+                                    <div className="text-[10px] text-yellow-600 font-mono uppercase mb-3 tracking-widest flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse"></span>
+                                        Unlocked Certificates
                                     </div>
-                                    <span className="text-[10px] text-slate-600 sm:ml-auto">{sub.date}</span>
-                                  </>
-                                );
-
-                                const baseClasses = "flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 bg-black/40 px-3 py-2 rounded border border-slate-800 w-full transition-colors group/sub z-10 relative";
-                                const hoverClasses = sub.url ? "hover:border-yellow-500/50 hover:bg-slate-900 cursor-pointer" : "hover:border-green-500/30";
-
-                                return (
-                                    <div key={j} className="flex items-center gap-3 relative pl-4">
-                                        {/* Connector Lines */}
-                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-[1px] bg-slate-600"></div>
-                                        <div className="absolute left-0 top-0 bottom-1/2 w-[1px] bg-slate-600"></div>
-
-                                        {sub.url ? (
-                                            <a href={sub.url} target="_blank" rel="noopener noreferrer" className={`${baseClasses} ${hoverClasses}`}>
-                                                {content}
+                                    <div className="space-y-3">
+                                        {unlocked.map((sub, j) => (
+                                            <a key={j} href={sub.url} target="_blank" rel="noopener noreferrer" className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 bg-black/40 px-3 py-2 rounded border border-slate-800 w-full hover:border-yellow-500/50 hover:bg-slate-900 cursor-pointer transition-colors group/sub z-10 relative">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-yellow-500 text-xs">📜</span>
+                                                    <span className="text-xs text-slate-300 font-mono group-hover/sub:text-yellow-200 transition-colors">
+                                                        {sub.title}
+                                                    </span>
+                                                    <svg className="w-3 h-3 text-slate-600 group-hover/sub:text-yellow-500 opacity-0 group-hover/sub:opacity-100 transition-all -translate-x-2 group-hover/sub:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                    </svg>
+                                                </div>
+                                                <span className="text-[10px] text-green-500/80 font-mono uppercase sm:ml-auto border border-green-900/50 px-1 rounded bg-green-900/10">Certified</span>
                                             </a>
-                                        ) : (
-                                            <div className={`${baseClasses} ${hoverClasses}`}>
-                                                {content}
-                                            </div>
-                                        )}
+                                        ))}
                                     </div>
-                                );
-                            })}
+                                </div>
+                            )}
+
+                            {/* --- LOCKED / FUTURE CERTIFICATES --- */}
+                            {locked.length > 0 && (
+                                <div className="mt-4 pt-4 border-t border-slate-800/50 w-full">
+                                    <div className="text-[10px] text-slate-600 font-mono uppercase mb-3 tracking-widest flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 bg-slate-700 rounded-full"></span>
+                                        Locked / In Progress
+                                    </div>
+                                    <div className="space-y-3">
+                                        {locked.map((sub, j) => (
+                                            <div key={j} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 bg-slate-900/20 px-3 py-2 rounded border border-dashed border-slate-800 w-full opacity-60">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-slate-600 text-xs">🔒</span>
+                                                    <span className="text-xs text-slate-500 font-mono">
+                                                        {sub.title}
+                                                    </span>
+                                                </div>
+                                                <span className="text-[10px] text-slate-600 font-mono uppercase sm:ml-auto">Locked</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                         </div>
+
+                        {/* RIGHT SIDE: SPINNING BADGE */}
+                        {item.image && (
+                            <div className="shrink-0 relative w-28 h-28 rounded-full p-1 bg-gradient-to-br from-slate-800 to-slate-950 border border-yellow-500/30 shadow-[0_0_20px_rgba(234,179,8,0.1)] flex items-center justify-center overflow-hidden">
+                                <div className="absolute inset-0 rounded-full border-[2px] border-yellow-500/10 border-t-yellow-500/80 animate-[spin_3s_linear_infinite] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                                <div className="w-full h-full rounded-full overflow-hidden bg-black flex items-center justify-center relative z-10">
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.title} 
+                                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" 
+                                    />
+                                </div>
+                            </div>
+                        )}
+
                     </div>
-                  )}
-
-                </div>
-
-                 {/* RIGHT SIDE: SPINNING BADGE */}
-                 {item.image && (
-                  <div className="shrink-0 relative w-28 h-28 rounded-full p-1 bg-gradient-to-br from-slate-800 to-slate-950 border border-yellow-500/30 shadow-[0_0_20px_rgba(234,179,8,0.1)] flex items-center justify-center overflow-hidden">
-                      <div className="absolute inset-0 rounded-full border-[2px] border-yellow-500/10 border-t-yellow-500/80 animate-[spin_3s_linear_infinite] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                      <div className="w-full h-full rounded-full overflow-hidden bg-black flex items-center justify-center relative z-10">
-                          <img 
-                            src={item.image} 
-                            alt={item.title} 
-                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" 
-                          />
-                      </div>
-                  </div>
-                )}
-
-              </div>
-            </div>
-          ))}
+                </motion.div>
+            );
+          })}
         </div>
       </section>
     </main>

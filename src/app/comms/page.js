@@ -1,10 +1,14 @@
 "use client";
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function CommsPage() {
   const [copied, setCopied] = useState(false);
   const email = "irahming204278@voorhees.edu"; 
+  
+  // --- TYPEWRITER STATE ---
+  const [typedSubtitle, setTypedSubtitle] = useState("");
+  const fullSubtitle = "> ESTABLISHING SECURE UPLINK...";
 
   // --- DATABASE CONNECTION STATES ---
   const [formData, setFormData] = useState({
@@ -13,6 +17,21 @@ export default function CommsPage() {
     message: ''
   });
   const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+
+  // --- ANIMATION EFFECT ---
+  useEffect(() => {
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      if (index <= fullSubtitle.length) {
+        setTypedSubtitle(fullSubtitle.slice(0, index));
+        index++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 40); // 40ms speed
+
+    return () => clearInterval(typingInterval);
+  }, []);
 
   // --- HANDLE INPUT CHANGES ---
   const handleChange = (e) => {
@@ -28,7 +47,6 @@ export default function CommsPage() {
     setStatus('loading');
 
     try {
-      // This calls your existing API route
       const response = await fetch('/api/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -63,8 +81,11 @@ export default function CommsPage() {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-2">
                 COMMS RELAY <span className="text-purple-500">.net</span>
             </h1>
-            <p className="text-slate-500 font-mono text-sm">
-                ESTABLISHING SECURE UPLINK...
+            
+            {/* TYPEWRITER SUBTITLE */}
+            <p className="text-slate-500 font-mono text-sm h-5 flex items-center">
+                {typedSubtitle}
+                <span className="animate-pulse text-purple-500 ml-1">_</span>
             </p>
         </div>
 
@@ -164,7 +185,7 @@ export default function CommsPage() {
             </form>
         </div>
 
-        {/* RIGHT COLUMN: RADAR & LINKS (Unchanged) */}
+        {/* RIGHT COLUMN: RADAR & LINKS */}
         <div className="space-y-6">
             
             {/* RADAR VISUAL */}
@@ -198,10 +219,10 @@ export default function CommsPage() {
                 </button>
             </div>
 
-            {/* SOCIAL LINKS (Updated to Match New Button Style) */}
+            {/* SOCIAL LINKS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
-                {/* LINKEDIN BUTTON (Styled to match GitHub) */}
+                {/* LINKEDIN BUTTON */}
                 <a 
                   href="https://www.linkedin.com/in/izayah-rahming-8b6400281/" 
                   target="_blank"
@@ -217,7 +238,7 @@ export default function CommsPage() {
                   </span>
                 </a>
 
-                {/* GITHUB BUTTON (Your Requested Snippet) */}
+                {/* GITHUB BUTTON */}
                 <a 
                   href="https://github.com/zaysstar" 
                   target="_blank"
@@ -233,24 +254,17 @@ export default function CommsPage() {
 
             </div>
 
-            {/* RESUME & SOCIAL ACTIONS */}
-              <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
-                
-                {/* 1. The Resume Button */}
+            {/* RESUME BUTTON */}
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <a 
                   href="/resume.pdf" 
                   download="Izayah_Rahming_Resume.pdf"
-                  className="group relative inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 border border-slate-700 rounded-lg overflow-hidden hover:border-green-500/50 transition-all hover:shadow-[0_0_20px_rgba(34,197,94,0.1)]"
+                  className="w-full group relative inline-flex items-center justify-center gap-3 px-6 py-3 bg-slate-900/50 border border-slate-700 rounded-lg overflow-hidden hover:border-green-500/50 transition-all hover:shadow-[0_0_20px_rgba(34,197,94,0.1)]"
                 >
-                  {/* Hover background slide effect */}
                   <div className="absolute inset-0 bg-green-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                  
-                  {/* Icon (Simple SVG Download Arrow) */}
                   <svg className="w-5 h-5 text-slate-400 group-hover:text-green-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                   </svg>
-                  
-                  {/* Text */}
                   <span className="relative font-mono text-sm font-bold text-slate-300 group-hover:text-green-300 tracking-wide">
                     DOWNLOAD RESUME
                   </span>

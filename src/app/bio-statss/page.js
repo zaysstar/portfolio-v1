@@ -1,52 +1,51 @@
 "use client"; // Required for animations
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import CyberStats3D from '../components/CyberStats3D'; // Import the 3D Component
 
 export default function CharacterStatsPage() {
   
   // --- STATE FOR ANIMATIONS ---
   const [typedName, setTypedName] = useState("");
+  const [typedSubtitle, setTypedSubtitle] = useState(""); // New state for subtitle
   const [chartLoaded, setChartLoaded] = useState(false);
   
   const fullName = "IZAYAH ANTHONY RAHMING";
-
-  // --- CHARACTER STATS DATA ---
-  const stats = [
-    { label: "CODING", value: 90 },     
-    { label: "DESIGN", value: 85 },     
-    { label: "WRITING", value: 95 },    
-    { label: "LEADERSHIP", value: 80 }, 
-    { label: "TEAMWORK", value: 88 },   
-    { label: "STRATEGY", value: 75 }    
-  ];
+  const fullSubtitle = "> ANALYZING SOUL_DATA & CORE_ATTRIBUTES..."; // The text to type
 
   // --- ANIMATION EFFECTS ---
   useEffect(() => {
+    // 1. Load the Chart (Fade in)
     setTimeout(() => setChartLoaded(true), 100);
 
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullName.length) {
-        setTypedName(fullName.slice(0, currentIndex));
-        currentIndex++;
+    // 2. Typewriter for Name (Slower, heavier feel)
+    let nameIndex = 0;
+    const nameInterval = setInterval(() => {
+      if (nameIndex <= fullName.length) {
+        setTypedName(fullName.slice(0, nameIndex));
+        nameIndex++;
       } else {
-        clearInterval(typingInterval);
+        clearInterval(nameInterval);
       }
     }, 50);
 
-    return () => clearInterval(typingInterval);
+    // 3. Typewriter for Subtitle (Faster, "System" feel)
+    let subIndex = 0;
+    const subInterval = setInterval(() => {
+      if (subIndex <= fullSubtitle.length) {
+        setTypedSubtitle(fullSubtitle.slice(0, subIndex));
+        subIndex++;
+      } else {
+        clearInterval(subInterval);
+      }
+    }, 30); // Faster speed (30ms vs 50ms)
+
+    // Cleanup function
+    return () => {
+        clearInterval(nameInterval);
+        clearInterval(subInterval);
+    };
   }, []);
-
-  const getPoint = (value, index, total) => {
-    const angle = (Math.PI * 2 * index) / total - Math.PI / 2;
-    const radius = (value / 100) * 100;
-    const x = 128 + radius * Math.cos(angle);
-    const y = 128 + radius * Math.sin(angle);
-    return `${x},${y}`;
-  };
-
-  const statPoints = stats.map((s, i) => getPoint(s.value, i, stats.length)).join(" ");
-  const fullPoints = stats.map((s, i) => getPoint(100, i, stats.length)).join(" ");
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-[#007474]/40 pb-20 p-4 md:p-12">
@@ -57,8 +56,11 @@ export default function CharacterStatsPage() {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-2">
                 PLAYER PROFILE <span className="text-red-500">.bio</span>
             </h1>
-            <p className="text-slate-500 font-mono text-sm">
-                ANALYZING SOUL_DATA & CORE_ATTRIBUTES...
+            
+            {/* TYPEWRITER SUBTITLE */}
+            <p className="text-slate-500 font-mono text-sm h-5 flex items-center">
+                {typedSubtitle}
+                <span className="animate-pulse text-red-500 ml-1">_</span>
             </p>
         </div>
 
@@ -70,45 +72,13 @@ export default function CharacterStatsPage() {
       {/* CONTENT GRID */}
       <section className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
-        {/* LEFT COLUMN: THE RADAR CHART */}
-        <div className="relative flex justify-center items-center">
+        {/* LEFT COLUMN: THE 3D RADAR CHART */}
+        <div className={`relative flex justify-center items-center h-[400px] md:h-[500px] transition-opacity duration-1000 ${chartLoaded ? 'opacity-100' : 'opacity-0'}`}>
             {/* Background Glow */}
-            <div className={`absolute w-64 h-64 bg-red-500/10 blur-[50px] rounded-full pointer-events-none transition-opacity duration-1000 ${chartLoaded ? 'opacity-100' : 'opacity-0'}`}></div>
-
-            <div className="relative w-80 h-80 md:w-96 md:h-96">
-                <svg viewBox="0 0 256 256" className="w-full h-full overflow-visible drop-shadow-[0_0_10px_rgba(239,68,68,0.3)]">
-                    {/* Background Grid */}
-                    <polygon points={fullPoints} fill="none" stroke="#334155" strokeWidth="1" />
-                    <polygon points={stats.map((s, i) => getPoint(66, i, stats.length)).join(" ")} fill="none" stroke="#1e293b" strokeWidth="1" strokeDasharray="4 4" />
-                    <polygon points={stats.map((s, i) => getPoint(33, i, stats.length)).join(" ")} fill="none" stroke="#1e293b" strokeWidth="1" strokeDasharray="4 4" />
-                    
-                    {/* ANIMATED STAT SHAPE */}
-                    <g className={`origin-center transition-all duration-[1500ms] ease-out ${chartLoaded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
-                        <polygon 
-                            points={statPoints} 
-                            fill="rgba(239, 68, 68, 0.2)" 
-                            stroke="#ef4444" 
-                            strokeWidth="2" 
-                            className="drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]" 
-                        />
-                        {stats.map((s, i) => {
-                            const [x, y] = getPoint(s.value, i, stats.length).split(",");
-                            return <circle key={i} cx={x} cy={y} r="3" fill="#ef4444" />;
-                        })}
-                    </g>
-
-                    {/* LABELS */}
-                    {stats.map((stat, i) => {
-                        const [x, y] = getPoint(115, i, stats.length).split(",");
-                        return (
-                            <g key={i} className={`transition-opacity duration-700 delay-500 ${chartLoaded ? 'opacity-100' : 'opacity-0'}`}>
-                                <text x={x} y={y} fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle" dominantBaseline="middle" className="uppercase tracking-widest font-bold">{stat.label}</text>
-                                <text x={x} y={parseFloat(y) + 12} fill="#ef4444" fontSize="9" fontFamily="monospace" textAnchor="middle" dominantBaseline="middle">{stat.value}/100</text>
-                            </g>
-                        );
-                    })}
-                </svg>
-            </div>
+            <div className="absolute w-64 h-64 bg-red-500/10 blur-[80px] rounded-full pointer-events-none"></div>
+            
+            {/* THE 3D COMPONENT */}
+            <CyberStats3D />
         </div>
 
         {/* RIGHT COLUMN: THE LORE (BIO) */}
@@ -121,8 +91,7 @@ export default function CharacterStatsPage() {
 
                 <div className="flex items-center gap-4 mb-4">
                      
-                     {/* --- UPDATED: PROFILE IMAGE PLACEHOLDER --- */}
-                     {/* Replace '/images/profile-headshot.jpg' with your real file */}
+                     {/* PROFILE IMAGE PLACEHOLDER */}
                      <div className="w-14 h-14 bg-black rounded border border-red-500/50 overflow-hidden shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
                         <img 
                             src="/izayah-rahming.jpg" 
@@ -133,7 +102,7 @@ export default function CharacterStatsPage() {
 
                      <div>
                         {/* TYPEWRITER NAME */}
-                        <h2 className="text-xl font-bold text-white tracking-wide h-6 flex items-center">
+                        <h2 className="text-lg font-bold text-white tracking-wide h-6 flex items-center">
                             {typedName}
                             <span className="animate-pulse text-red-500 ml-1">_</span>
                         </h2>
@@ -183,7 +152,7 @@ export default function CharacterStatsPage() {
                     <span className="text-2xl">🍳</span>
                     <div>
                         <div className="text-xs text-slate-500 uppercase font-bold">Side Skill</div>
-                        <div className="text-sm text-slate-200">Fusion Cooking</div>
+                        <div className="text-sm text-slate-200">Cooking & Baking</div>
                     </div>
                 </div>
             </div>

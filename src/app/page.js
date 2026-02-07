@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link'; // Standard Next.js Link component
 import ProjectModal from './components/ProjectModal';
-import ContactTerminal from './components/ContactTerminal';
+import CyberShape from './components/CyberShape';
 
 // --- OOP SKILL: Project Data ---
 class Project {
@@ -139,22 +139,24 @@ export default function Home() {
     // Systems & Game Dev (Red/Orange)
     { name: "C++", color: "bg-red-900 border-red-500" },
     { name: "UE5", color: "bg-orange-800 border-orange-500" },
-    
+
+    // Typed Languages (Blue/Indigo)
+    { name: "TypeScript", color: "bg-amber-800 border-amber-500" },
+    { name: "Kotlin", color: "bg-yellow-700 border-yellow-400" },
+
     // Backend & Data (Amber/Yellow/Green)
-    { name: "Postgres", color: "bg-amber-800 border-amber-500" },
-    { name: "Python", color: "bg-yellow-700 border-yellow-400" },
-    { name: "Pandas", color: "bg-lime-800 border-lime-500" },
-    { name: "TensorFlow", color: "bg-green-800 border-green-500" },
+    { name: "Postgres", color:"bg-green-900 border-green-600" },
+    { name: "Python", color: "bg-emerald-800 border-emerald-500"},
+    { name: "Pandas", color: "bg-teal-900 border-teal-600" },
+    { name: "MongoDB", color: "bg-cyan-800 border-cyan-400" },
     
     // Frontend & Web (Teal/Cyan/Blue)
-    { name: "ReactJS", color: "bg-teal-800 border-teal-400" },
-    { name: "NextJS", color: "bg-cyan-900 border-cyan-500" },
-    { name: "Tailwind", color: "bg-sky-800 border-sky-400" },
+    { name: "ThreeJS", color: "bg-sky-900 border-sky-500" },
+    { name: "ReactJS", color: "bg-blue-800 border-blue-400" },
+    { name: "NextJS", color: "bg-indigo-900 border-indigo-500" },
+    { name: "Tailwind", color: "bg-violet-800 border-violet-400" },
     
-    // Typed Languages (Blue/Indigo)
-    { name: "TypeScript", color: "bg-blue-800 border-blue-500" },
-    { name: "Kotlin", color: "bg-indigo-800 border-indigo-400" },
-    { name: "Linux", color: "bg-purple-800 border-purple-400" }
+
   ];
 
   const marqueeStyle = (
@@ -181,8 +183,24 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-[#007474]/40 pb-20">
       
-      {/* HERO SECTION */}
-        <section className="flex flex-col items-center justify-center pt-24 pb-12 px-4">
+      {/* 1. HERO SECTION & TECH STACK */}
+      <section className="flex flex-col items-center justify-center px-4 pt-10 pb-12 relative">
+        
+        {/* THE 3D ARTIFACT (Absolute positioned on desktop) */}
+        <div className="hidden md:block absolute top-10 right-10 w-[400px] h-[400px] z-0 opacity-80 hover:opacity-100 transition-opacity">
+           <CyberShape />
+        </div>
+
+        {/* The Mobile Version (Visible only on small screens) */}
+        <div className="block md:hidden w-full h-48 mb-4">
+           <CyberShape />
+        </div>
+
+        <div className="border-l-2 border-slate-800 pl-6 md:pl-12 relative z-10"> </div>
+          
+          <p className="text-green-500 font-mono text-sm mb-4 animate-pulse">
+            SYSTEM_READY. USER_AUTHENTICATED.
+          </p>
           
           {/* LIVE STATUS BOX (Stays at the very top center) */}
           <div className="mb-12 p-4 bg-black/40 border border-green-900/50 rounded-lg max-w-lg w-full backdrop-blur-sm shadow-[0_0_15px_rgba(34,197,94,0.05)]">
@@ -243,13 +261,13 @@ export default function Home() {
           {/* 3DS STYLE SKILL GRID (Restored & Fixed for Mobile) */}
           {/* Using grid-cols-4 for mobile to force 4 items per row */}
           {/* md:flex allows it to unwrap and breathe on desktop */}
-          <div className="w-full pb-2 mb-8">
-            <div className="grid grid-cols-4 gap-3 md:flex md:flex-wrap">
+          <div className="w-full pb-2 mb-5">
+            <div className="grid grid-cols-4 gap-5 md:flex md:flex-wrap">
               {techStack.map((skill, i) => (
                 <div key={i} className="group relative w-full md:w-20 aspect-square cursor-pointer">
                   
                   {/* The Cartridge / App Icon */}
-                  <div className={`w-full h-full rounded-lg border-t-1 border-l-1 border-r-1 border-b-2 ${skill.color} shadow-lg flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-[0_4px_0_rgba(0,0,0,0.5)] transition-transform duration-200 group-hover:-translate-y-2 group-hover:shadow-[0_8px_0_rgba(0,0,0,0.5)] z-10 relative`}>
+                  <div className={`w-full h-full rounded-xl border-t-2 border-l-2 border-r-2 border-b-2 ${skill.color} shadow-lg flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-[0_4px_0_rgba(0,0,0,0.5)] transition-transform duration-200 group-hover:-translate-y-2 group-hover:shadow-[0_8px_0_rgba(0,0,0,0.5)] z-10 relative`}>
                     <span className="drop-shadow-md text-center px-1 break-words">{skill.name}</span>
                   </div>
 

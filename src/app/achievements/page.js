@@ -1,9 +1,28 @@
+"use client";
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function AchievementsPage() {
   
+  // --- TYPEWRITER STATE ---
+  const [typedSubtitle, setTypedSubtitle] = useState("");
+  const fullSubtitle = "> DECRYPTING TROPHY_CASE & AWARDS...";
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index <= fullSubtitle.length) {
+        setTypedSubtitle(fullSubtitle.slice(0, index));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 30); // Typing speed (30ms)
+
+    return () => clearInterval(interval);
+  }, []);
+
   // --- ACHIEVEMENT DATA ---
-  // NOTE: Add your certificate/medal images to /public/images/ for the badges to work!
   const achievements = [
     // --- COMPETITIVE WINS ---
     {
@@ -46,13 +65,11 @@ export default function AchievementsPage() {
       loot: ["React Certificate", "Android Certificate", "Honors Status"],
       image: "/H3Kw4tkF_400x400.jpg",
       
-      // --- UPDATED SUB-QUESTS WITH LINKS ---
-      // Replace the '#' with your actual certificate URLs
       subQuests: [
         { 
             title: "WEB101: Intro to Web Development (HONORS)", 
             date: "Certified",
-            url: "https://www.codepath.org/" // <--- PASTE REAL LINK HERE
+            url: "https://www.codepath.org/" 
         },
         { 
             title: "TIP102: Intermediate Technical Interview Prep", 
@@ -93,8 +110,11 @@ export default function AchievementsPage() {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-2">
                 ACHIEVEMENTS <span className="text-yellow-500">.log</span>
             </h1>
-            <p className="text-slate-500 font-mono text-sm">
-                DECRYPTING TROPHY_CASE & AWARDS...
+            
+            {/* TYPEWRITER SUBTITLE */}
+            <p className="text-slate-500 font-mono text-sm h-5 flex items-center">
+                {typedSubtitle}
+                <span className="animate-pulse text-yellow-500 ml-1">_</span>
             </p>
         </div>
 
@@ -148,14 +168,13 @@ export default function AchievementsPage() {
                     ))}
                   </div>
 
-                  {/* --- UPDATED SUB-QUESTS RENDER LOGIC --- */}
+                  {/* SUB-QUESTS */}
                   {item.subQuests && (
                     <div className="mt-4 pt-4 border-t border-slate-800/50 w-full">
                         <div className="text-[10px] text-slate-600 font-mono uppercase mb-3 tracking-widest">Unlocked Certificates:</div>
                         <div className="space-y-3">
                             {item.subQuests.map((sub, j) => {
                                 
-                                // Internal Content (Reused for Link or Div)
                                 const content = (
                                   <>
                                     <div className="flex items-center gap-2">
@@ -163,7 +182,6 @@ export default function AchievementsPage() {
                                         <span className="text-xs text-slate-300 font-mono group-hover/sub:text-yellow-200 transition-colors">
                                             {sub.title}
                                         </span>
-                                        {/* External Link Icon (Only shows if url exists) */}
                                         {sub.url && (
                                             <svg className="w-3 h-3 text-slate-600 group-hover/sub:text-yellow-500 opacity-0 group-hover/sub:opacity-100 transition-all -translate-x-2 group-hover/sub:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -174,7 +192,6 @@ export default function AchievementsPage() {
                                   </>
                                 );
 
-                                // Styling classes
                                 const baseClasses = "flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 bg-black/40 px-3 py-2 rounded border border-slate-800 w-full transition-colors group/sub z-10 relative";
                                 const hoverClasses = sub.url ? "hover:border-yellow-500/50 hover:bg-slate-900 cursor-pointer" : "hover:border-green-500/30";
 
@@ -184,7 +201,6 @@ export default function AchievementsPage() {
                                         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-[1px] bg-slate-600"></div>
                                         <div className="absolute left-0 top-0 bottom-1/2 w-[1px] bg-slate-600"></div>
 
-                                        {/* Render as Link if URL exists, otherwise Div */}
                                         {sub.url ? (
                                             <a href={sub.url} target="_blank" rel="noopener noreferrer" className={`${baseClasses} ${hoverClasses}`}>
                                                 {content}

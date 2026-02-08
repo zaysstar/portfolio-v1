@@ -32,7 +32,7 @@ export default function AchievementsPage() {
       org: "CodePath",
       date: "July 2025 - present",
       desc: "Completed multiple rigorous technical tracks to master modern software development standards.",
-      loot: ["React Certificate", "Android Certificate", "Honors Status"],
+      loot: ["TECHNICAL_MASTERY", "INDUSTRY_RELEVANCE", "CAREER_ADVANCEMENT"],
       image: "/H3Kw4tkF_400x400.jpg",
       url: "https://www.codepath.org/", // Optional Main Link
       
@@ -40,7 +40,7 @@ export default function AchievementsPage() {
         { 
             title: "WEB101: Intro to Web Development (HONORS)", 
             status: "CERTIFIED",
-            url: "https://www.codepath.org/" 
+            url: "#" 
         },
         { 
             title: "TIP102: Intermediate Technical Interview Prep", 
@@ -56,11 +56,22 @@ export default function AchievementsPage() {
             title: "AND101: Intro to Android Development", 
             status: "CERTIFIED",
             url: "#" 
-        }
+        },
+
+        { 
+            title: "AI110: Foundations of AI Engineering", 
+            status: "IN PROGRESS",
+            url: "#" 
+        },
+        { 
+            title: "WEB103: Advanced Web Development", 
+            status: "LOCKED",
+            url: "#" 
+        },
       ]
     },
     {
-      levels: ["CERTIFICATION", "INDUSTRY_SELECTION", "RARE_DROP"],
+      levels: ["CERTIFICATION", "RARE_DROP"],
       title: "Extern",
       org: "Extern",
       date: "August 2025 - present",
@@ -71,16 +82,22 @@ export default function AchievementsPage() {
       subQuests: [
         { 
             title: "Epic Games - Interactive 3D Game Design", 
+            status: "IN PROGRESS",
+            url: "#" 
+        },
+
+        { 
+            title: "Beats by Dre - Data Analytics: Quantitative and Qualitative Insights", 
             status: "LOCKED",
             url: "#" 
         },
+        { 
+            title: "Beats by Dre - Consumer Behavior & Market Analysis", 
+            status: "LOCKED",
+            url: "#" 
+        },        
         { 
             title: "Snap Inc. - AR Development", 
-            status: "LOCKED",
-            url: "#" 
-        },
-        { 
-            title: "Beats by Dre - Data Analytics", 
             status: "LOCKED",
             url: "#" 
         },
@@ -103,7 +120,7 @@ export default function AchievementsPage() {
       org: "ADMI (Association of Computer Science Departments at Minority Institutions)",
       date: "March 28th, 2025",
       desc: "Secured 1st Place in the Team Cybersecurity Competition against several universities (Morehouse, Spelman, FAMU and NCCU). Demonstrated advanced threat detection and defense strategies in capture-the-flag (CTF) challenges, while under time pressure.",
-      loot: ["Gold Medal", "Cyber Defense", "Teamwork"],
+      loot: ["Cyber Defense", "Teamwork"],
       image: null,
       url: "https://voorhees.edu/voorhees-university-wins-first-place-in-cybersecurity-at-admi-symposium-2025/" 
     },
@@ -146,7 +163,7 @@ export default function AchievementsPage() {
           {achievements.map((item, index) => {
             
             const unlocked = item.subQuests ? item.subQuests.filter(q => q.status === "CERTIFIED") : [];
-            const locked = item.subQuests ? item.subQuests.filter(q => q.status !== "CERTIFIED") : [];
+            const locked = item.subQuests ? item.subQuests.filter(q => q.status === "LOCKED" || q.status === "IN PROGRESS") : [];
 
             return (
                 <motion.div 
@@ -255,7 +272,7 @@ export default function AchievementsPage() {
                                                         {sub.title}
                                                     </span>
                                                 </div>
-                                                <span className="text-[10px] text-slate-600 font-mono uppercase sm:ml-auto">Locked</span>
+                                                <span className="text-[10px] text-slate-600 font-mono uppercase sm:ml-auto">{sub.status}</span>
                                             </div>
                                         ))}
                                     </div>

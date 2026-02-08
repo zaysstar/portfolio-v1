@@ -156,7 +156,6 @@ export default function Home() {
     { name: "NextJS", color: "bg-indigo-900 border-indigo-500" },
     { name: "Tailwind", color: "bg-violet-800 border-violet-400" },
     
-
   ];
 
   const marqueeStyle = (
@@ -173,10 +172,9 @@ export default function Home() {
 
   const footerMessages = [
     "Welcome to Zay's Terminal!",
-    "New Project Available: Epic Games Externship",
+    "CodePath Certificates Available to Unlock!",
     "Current Location: Denmark, SC",
-    "Status: ONLINE",
-    "Enjoy the coding vibes!",
+    "Status: IDLE",
     "Contact me for collaborations!",
   ];
 
@@ -202,26 +200,95 @@ export default function Home() {
             SYSTEM_READY. USER_AUTHENTICATED.
           </p>
           
-          {/* LIVE STATUS BOX (Stays at the very top center) */}
-          <div className="mb-12 p-4 bg-black/40 border border-green-900/50 rounded-lg max-w-lg w-full backdrop-blur-sm shadow-[0_0_15px_rgba(34,197,94,0.05)]">
-            <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3 text-center">System Metrics</p>
-            {systemStatus ? (
-              <div className="flex justify-between items-center font-mono text-xs">
-                <span className="flex items-center gap-2 text-green-400">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                  </span>
-                  {systemStatus.status}
-                </span>
-                <span className="text-slate-400 tracking-tighter tabular-nums">
-                  {formatTime(currentTime)}
-                </span>
+        {/* LIVE STATUS BOX (Stays at the very top center) */}
+          {(() => {
+            // --- 1. CONFIGURATION: CHANGE THIS VARIABLE TO SWAP MODES ---
+            const CURRENT_MODE = "i";
+
+            // --- 2. DEFINITIONS FOR EACH MODE ---
+            const MODES = {
+              op: { 
+                  label: "SYSTEM ONLINE", 
+                  dotColor: "bg-green-500", 
+                  pingColor: "bg-green-400", 
+                  textColor: "text-green-400",
+                  borderColor: "border-green-500/50 shadow-[0_0_15px_rgba(34,197,94,0.1)]"
+              },
+              i: { 
+                  label: "SYSTEM IDLE",   
+                  dotColor: "bg-yellow-500", 
+                  pingColor: "bg-yellow-400", 
+                  textColor: "text-yellow-400",
+                  borderColor: "border-yellow-500/50 shadow-[0_0_15px_rgba(234,179,8,0.1)]"
+              },
+              d: { 
+                  label: "DO NOT DISTURB",     
+                  dotColor: "bg-red-500",    
+                  pingColor: "bg-red-400",    
+                  textColor: "text-red-400",
+                  borderColor: "border-red-500/50 shadow-[0_0_15px_rgba(239,68,68,0.1)]"
+              },
+              g: { 
+                  label: "GAMING MODE", 
+                  dotColor: "bg-pink-500", 
+                  pingColor: "bg-pink-400", 
+                  textColor: "text-pink-400",
+                  borderColor: "border-pink-500/50 shadow-[0_0_15px_rgba(239,63,124,0.1)]"
+              },
+              df: { 
+                  label: "DEEP FOCUS MODE",     
+                  dotColor: "bg-violet-500",  
+                  pingColor: "bg-violet-400",       
+                  textColor: "text-violet-400",
+                  borderColor: "border-violet-700 shadow-none opacity-50"
+              },
+              t: { 
+                  label: "TRAVEL MODE", 
+                  dotColor: "bg-white", 
+                  pingColor: "bg-white", 
+                  textColor: "text-white-600",
+                  borderColor: "border-white-200/50"
+              },
+              s: { 
+                  label: "SLEEP MODE", 
+                  dotColor: "bg-indigo-500", 
+                  pingColor: "bg-indigo-400", 
+                  textColor: "text-indigo-400",
+                  borderColor: "border-indigo-900/50 opacity-70"
+              },
+              of: { 
+                  label: "SYSTEM OFFLINE",     
+                  dotColor: "bg-slate-500",  
+                  pingColor: "hidden",       
+                  textColor: "text-slate-500",
+                  borderColor: "border-slate-700 shadow-none opacity-50"
+              },
+            };
+
+            const activeStatus = MODES[CURRENT_MODE];
+
+            return (
+              <div className={`mb-12 p-4 bg-black/40 rounded-lg max-w-lg w-full backdrop-blur-sm transition-all duration-500 border ${activeStatus.borderColor}`}>
+                <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3 text-center">System Metrics</p>
+                
+                <div className="flex justify-between items-center font-mono text-xs">
+                    {/* STATUS INDICATOR */}
+                    <span className={`flex items-center gap-2 ${activeStatus.textColor} transition-colors duration-500`}>
+                      <span className="relative flex h-2 w-2">
+                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${activeStatus.pingColor}`}></span>
+                        <span className={`relative inline-flex rounded-full h-2 w-2 ${activeStatus.dotColor}`}></span>
+                      </span>
+                      {activeStatus.label}
+                    </span>
+
+                    {/* CLOCK */}
+                    <span className="text-slate-400 tracking-tighter tabular-nums">
+                      {formatTime(currentTime)}
+                    </span>
+                </div>
               </div>
-            ) : (
-              <div className="animate-pulse text-xs text-green-900 font-mono italic text-center">ESTABLISHING SECURE UPLINK...</div>
-            )}
-          </div>
+            );
+          })()}
 
           {/* MAIN CONTENT WRAPPER: This creates the Side-by-Side layout */}
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 max-w-6xl w-full justify-center">
@@ -476,7 +543,7 @@ export default function Home() {
             
             {/* The Magic: We spread the array twice to create the seamless loop */}
             {[...footerMessages, ...footerMessages].map((msg, index) => (
-                <span key={index} className="flex items-center gap-8">
+                <span key={index} className="flex items-center gap-10">
                     {msg}
                     <span className="text-green-900">///</span>
                 </span>

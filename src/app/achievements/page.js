@@ -130,7 +130,7 @@ export default function AchievementsPage() {
       title: "University Scholastic Honors",
       org: "Voorhees University",
       date: "March 2024 - present",
-      desc: "Consistently recognized for superior academic performance. Maintained a 3.73 Major GPA while balancing leadership roles.",
+      desc: "Consistently recognized for superior academic performance. Inducted into the W. Franklin Evans Honors College. Maintained a 3.73 Major GPA while balancing leadership roles.",
       loot: ["President's List (1x)", "Dean's List (5x)", "Academic Medals (2x)"],
       image: "/images/academic-awards.jpg"
     },

@@ -29,26 +29,28 @@ export default function QuestLogPage() {
     {
       id: "bbb-01",
       levels: ["CURRENT", "OFFICER_POSITION"],
-      title: "Co-Director of Communications",
+      title: "Co-Director of Communications and Digital Presence",
       org: "Better Blender Brothers",
-      date: "Feb 2026 - present",
+      date: "February 2026 - present",
       desc: "Leading the charge in shaping and sharing the organization's narrative. Managing social media, crafting press releases, and ensuring our message resonates across campus.",
       loot: ["Leadership", "Communications", "Public Speaking"],
       image: "/528451364_17872792683407398_4384365415726032581_n.jpg",
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     {
       id: "males-01",
       levels: ["CURRENT", "MEMBER_POSITION"],
       title: "Member",
       org: "M.A.L.E.S.",
-      date: "Jan 2026 - present",
+      date: "January 2026 - present",
       desc: "Engaging in initiatives that promote general holisticness, academic excellence and cultural awareness among male students on campus.",
       loot: ["Mentorship", "Community Service"],
       image: "/IMG5653385041973313516.jpg",
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     // --- 2025 START ---
     {
@@ -56,62 +58,66 @@ export default function QuestLogPage() {
       levels: ["CURRENT", "AMBASSADOR"],
       title: "UNCF Student Ambassador",
       org: "United Negro College Fund",
-      date: "Nov 2025 - present",
+      date: "November 2025 - present",
       desc: "Selected to represent the university student body. Organizing campus events and driving scholarship awareness to help peers secure funding.",
       loot: ["Networking", "Event Planning", "Advocacy"],
       image: "/images/uncf-ambassador.jpg",
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     {
       id: "pac-uncf-01",
       levels: ["CURRENT", "OFFICER_POSITION"],
       title: "Acting President",
-      org: "Pre-Alumni Council (UNCF)",
-      date: "Sep 2023 - present",
+      org: "Pre-Alumni Council",
+      date: "September 2023 - present",
       desc: "Leading the bridge between current students and alumni. Spearheading fundraising initiatives and fostering school pride through the UNCF network.",
       loot: ["Leadership", "Fundraising", "Alumni Relations"],
       image: null,
-      previousRoles: [],
       subRoles: [
         {
             levels: ["MEMBER"],
             title: "General Member",
-            date: "Sep 2023 - Present",
+            date: "September 2023 - present",
             desc: "Active participant in general body meetings and volunteer initiatives."
         }
-      ]
+      ],
+      previousRoles: [],
+      
     },
     {
       id: "sga-01",
       levels: ["CURRENT", "OFFICER_POSITION"],
       title: "Senior Class Vice President",
       org: "Student Government Association",
-      date: "Sep 2025 - Present",
+      date: "September 2025 - present",
       desc: "Serving as the strategic voice for the senior class. Partnering with the President to orchestrate senior-focused events and manage budgets.",
       loot: ["Leadership", "Budgeting", "Crisis Mgmt"],
       image: "/452301774_1562940110923259_3701710326811625647_n.jpg",
+      subRoles: [],
       previousRoles: [
         { 
           levels: ["FORMER", "MEMBER"],
           title: "Judicial Board - Student Representative", 
-          date: "Jan 2024 - May 2025",
+          date: "January 2024 - May 2025",
           desc: "Served on the disciplinary hearing panel to ensure fair due process for students." 
         }
       ],
-      subRoles: []
+      
     },
     {
       id: "vu-board-01",
       levels: ["CURRENT", "OFFICER_POSITION"],
       title: "Multimedia Manager",
       org: "VU President's Student Advisory Board",
-      date: "Sep 2025 - present",
+      date: "September 2025 - present",
       desc: "Managing multimedia content creation and distribution for the President's Student Advisory Board. Collaborating with the President's office to produce engaging visual materials.",
       loot: ["Content Creation", "Media Mgmt", "Public Relations"],
       image: "/images/sga-team.jpg",
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     // --- ACADEMIC & PROFESSIONAL ORGS ---
     {
@@ -119,67 +125,72 @@ export default function QuestLogPage() {
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Scholar - Year I",
       org: "Center for Financial Advancement",
-      date: "Sep 2025 - present",
+      date: "September 2025 - present",
       desc: "Receiving financial literacy training and mentorship through the CFA program.",
       loot: ["Finance", "Professionalism"],
       image: null,
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     {
       id: "naba-01",
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Collegiate Member at-Large",
       org: "NABA (Southern Region)",
-      date: "July 2025 - Present",
+      date: "July 2025 - present",
       desc: "Participating in financial literacy workshops and professional development conferences.",
       loot: ["Finance", "Professionalism"],
       image: null,
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     {
       id: "nsbe-01",
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Collegiate Member at-Large",
       org: "NSBE (Region II)",
-      date: "June 2025 - Present",
+      date: "June 2025 - present",
       desc: "Engaging in STEM outreach and engineering networking events.",
       loot: ["Engineering", "STEM Outreach"],
       image: null,
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     {
       id: "sva-01",
       levels: ["CURRENT", "OFFICER_POSITION"],
       title: "Chaplain",
       org: "Student Veterans of America",
-      date: "Apr 2025 - Present",
+      date: "April 2025 - present",
       desc: "Selected for the top-tier leadership summit in Washington D.C. Focused on advocacy and organizational management for student veterans.",
       loot: ["Policy", "Federal Advocacy"],
       image: "/images/sva-dc-trip.jpg",
-      previousRoles: [],
       subRoles: [
         { 
           levels: ["DELEGATE", "TRAVEL_QUEST"],
           title: "SVA Leadership Institute Fellow", 
-          date: "Oct 2025",
+          date: "October 2025",
           desc: "Selected for the top-tier leadership summit in Washington D.C." 
         }
-      ]
+      ],
+      previousRoles: [],
+      
     },
         {
       id: "ctrl-dev-01",
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Member",
       org: "CTRL-DEV Technology Club",
-      date: "Jan 2025 - present",
+      date: "January 2025 - present",
       desc: "Collaborating with peers on software development projects, participating in coding workshops, and keeping up with emerging tech trends.",
       loot: ["Software Dev", "Networking", "Tech Trends"],
       image: null, 
+      subRoles: [],
       previousRoles: [],
-      subRoles: []
+      
     },
     // --- 2024 START ---
     {
@@ -191,53 +202,56 @@ export default function QuestLogPage() {
       desc: "Participating in academic excellence workshops and community service projects tailored for honors students.",
       loot: ["Academics", "Service"],
       image: null,
+      subRoles: [],
       previousRoles: [
         {
           levels: ["FORMER", "OFFICER"],
-          title: "Recording Secretary ('24-'25)",
+          title: "Secretary",
           date: "May 2024 - May 2025",
           desc: "Coordinated communication between the executive board and the general body."
         }
       ],
-      subRoles: [] 
+      
     },
     {
       id: "stem-club-01",
       levels: ["FORMER", "CHAIR_POSITION"],
       title: "Graphic Design Chair",
       org: "STEM Club Committee",
-      date: "Jan 2024 - May 2024",
+      date: "January 2024 - May 2024",
       desc: "Spearheaded visual communications for the STEM Club. Designed flyers, digital assets, and event branding to increase student engagement in STEM initiatives.",
       loot: ["Graphic Design", "Branding", "Promotion"],
       image: null,
+      subRoles: [],
       previousRoles: [
         {
           levels: ["MEMBER"],
           title: "General Member",
-          date: "Jan 2024 - May 2024",
+          date: "January 2024 - May 2024",
           desc: "Participated in planning and executing STEM awareness events on campus."
         }
       ],
-      subRoles: []
+      
     },
     {
       id: "hcasc-01",
       levels: ["CURRENT", "CAPTAIN"],
-      title: "Team Captain ('26)",
+      title: "Team Captain (2026)",
       org: "Honda Campus All Star Challenge",
-      date: "Feb 2024 - Present",
+      date: "February 2024 - present",
       desc: "Leading the varsity academic quiz bowl team. Analyzing competition strategies and competing in National Qualifying Tournaments.",
       loot: ["Trivia", "Strategy", "Quick Thinking"],
       image: null,
-      previousRoles: [],
       subRoles: [
         {
-          levels: ["COMPETITOR"],
+          levels: ["CURRENT", "COMPETITOR"],
           title: "NQT Traveling Member (3x)",
-          date: "2024 - Present",
+          date: "January 2024 - present",
           desc: "Represented the university at three separate qualifying tournaments."
         }
-      ]
+      ],
+      previousRoles: [],
+      
     },
     // --- 2023 START ---
     {
@@ -245,57 +259,65 @@ export default function QuestLogPage() {
       levels: ["CURRENT", "MEMBER_POSITION"],
       title: "Member",
       org: "International Students Association",
-      date: "Jan 2023 - Present",
+      date: "January 2023 - present",
       desc: "Supporting international student integration and cultural exchange events.",
       loot: ["Culture", "Networking"],
       image: null,
+      subRoles: [],
       previousRoles: [
         {
           levels: ["FORMER", "ROYALTY"],
           title: "Mister ISA (2024-2025)",
-          date: "2024 - 2025",
+          date: "May 2024 - May 2025",
           desc: "Served as the representative face of the organization for campus events."
         }
       ],
-      subRoles: []
+      
     },
     {
       id: "choir-01",
       levels: ["CURRENT", "MEMBER_POSITION"],
       title: "Member (Tenor)",
       org: "VU Choir / Singing Tigers",
-      date: "Jan 2023 - Present",
+      date: "January 2023 - present",
       desc: "Performing as a Tenor in the university's premier vocal ensemble. Representing the institution at cultural and formal events.",
       loot: ["Performance", "Teamwork"],
       image: null,
-      previousRoles: [
-        {
-          levels: ["FORMER", "ROYALTY"],
-          title: "Mister Choir ('23-'24)",
-          date: "2023 - 2024",
-          desc: "Student representative for the choir."
-        }
-      ],
       subRoles: [
         {
           levels: ["ENSEMBLE"],
           title: "Tigeraires",
-          date: "Jan 2023 - Present",
+          date: "January 2023 - present",
           desc: "Member of the specialized vocal ensemble group."
         }
-      ]
+      ],
+      previousRoles: [
+        {
+          levels: ["FORMER", "ROYALTY"],
+          title: "Mister Choir (2023-2024)",
+          date: "September 2023 - May 2024",
+          desc: "Student representative for the choir."
+        }
+      ],
     },
     {
       id: "ace-01",
-      levels: ["FORMER", "OFFICER_POSITION", "MENTOR"],
-      title: "Peer Tutor & Recording Secretary",
-      org: "VU A.C.E. Peer Tutoring Program",
-      date: "Aug 2023 - Apr 2025",
-      desc: "Delivered personalized academic support to 30+ CS/Cybersecurity students. Maintained accurate records of all tutoring operations.",
+      levels: ["FORMER", "MENTOR"],
+      title: "Peer Tutor",
+      org: "A.C.E. Peer Tutoring Program",
+      date: "August 2023 - April 2025",
+      desc: "Delivered personalized academic support to 30+ CS/Cybersecurity students. Developed tailored lesson plans and study strategies to improve student performance and confidence.",
       loot: ["Mentorship", "Pedagogy", "Data Entry"],
       image: "/images/ace-tutoring.jpg",
-      previousRoles: [],
-      subRoles: []
+      subRoles: [],
+      previousRoles: [
+        {
+          levels: ["FORMER", "OFFICER_POSITION"],
+          title: "Recording Secretary",
+          date: "September 2024 - April 2025",
+          desc: "Maintained records of tutoring sessions, operations and student progress."
+        }
+      ],
     },
   ];
 
@@ -375,6 +397,41 @@ export default function QuestLogPage() {
                             {quest.desc}
                         </p>
 
+                        {/* --- SUB-ROLES (Active) --- */}
+                        {quest.subRoles && quest.subRoles.length > 0 && (
+                            <div className="mb-6 p-4 rounded border border-blue-900/30 bg-blue-500/5 relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-1 h-full bg-blue-600/50"></div>
+                                <h4 className="text-[10px] font-mono text-blue-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
+                                    Active Sub-Routines
+                                </h4>
+                                <div className="space-y-3">
+                                    {quest.subRoles.map((role, idx) => (
+                                        <div key={idx}>
+                                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                                                <span className="text-sm font-bold text-slate-200">
+                                                    {role.title}
+                                                </span>
+                                                <span className="text-[10px] font-mono text-slate-600 border border-slate-800 px-1 rounded">
+                                                    {role.date}
+                                                </span>
+                                                {role.levels && role.levels.includes("TRAVEL_QUEST") && (
+                                                    <span className="text-[9px] bg-purple-900/30 border border-purple-500/30 text-purple-300 px-1.5 rounded">
+                                                        TRAVEL QUEST
+                                                    </span>
+                                                )}
+                                            </div>
+                                            {role.desc && (
+                                                <p className="text-xs text-slate-400 leading-relaxed">
+                                                    {role.desc}
+                                                </p>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         {/* --- PREVIOUS ROLES (Legacy/History) --- */}
                         {quest.previousRoles && quest.previousRoles.length > 0 && (
                             <div className="mb-6 p-4 rounded border-l-2 border-slate-800 bg-slate-950/30">
@@ -395,38 +452,6 @@ export default function QuestLogPage() {
                                             </div>
                                             {role.desc && (
                                                 <p className="text-xs text-slate-600 leading-relaxed">
-                                                    {role.desc}
-                                                </p>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* --- SUB-ROLES (Active) --- */}
-                        {quest.subRoles && quest.subRoles.length > 0 && (
-                            <div className="mb-6 p-4 rounded border border-blue-900/30 bg-blue-500/5 relative overflow-hidden">
-                                <div className="absolute top-0 left-0 w-1 h-full bg-blue-600/50"></div>
-                                <h4 className="text-[10px] font-mono text-blue-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
-                                    Active Sub-Routines
-                                </h4>
-                                <div className="space-y-3">
-                                    {quest.subRoles.map((role, idx) => (
-                                        <div key={idx}>
-                                            <div className="flex flex-wrap items-center gap-2 mb-1">
-                                                <span className="text-sm font-bold text-slate-200">
-                                                    {role.title}
-                                                </span>
-                                                {role.levels && role.levels.includes("TRAVEL_QUEST") && (
-                                                    <span className="text-[9px] bg-purple-900/30 border border-purple-500/30 text-purple-300 px-1.5 rounded">
-                                                        TRAVEL QUEST
-                                                    </span>
-                                                )}
-                                            </div>
-                                            {role.desc && (
-                                                <p className="text-xs text-slate-400 leading-relaxed">
                                                     {role.desc}
                                                 </p>
                                             )}

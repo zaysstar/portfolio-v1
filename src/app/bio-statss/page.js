@@ -64,8 +64,8 @@ export default function CharacterStatsPage() {
             </p>
         </div>
 
-        <Link href="/" className="group flex items-center gap-2 px-5 py-2 bg-slate-900 border border-slate-700 rounded hover:border-green-500 transition-all">
-            <span className="text-slate-400 group-hover:text-green-400 text-sm font-mono">&lt; RETURN_TO_BASE</span>
+        <Link href="/" className="group flex items-center gap-2 px-5 py-2 bg-slate-900 border border-slate-700 rounded hover:border-red-500 transition-all">
+            <span className="text-slate-400 group-hover:text-red-400 text-sm font-mono">&lt; RETURN_TO_BASE</span>
         </Link>
       </header>
 

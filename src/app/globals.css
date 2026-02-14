@@ -26,4 +26,66 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* --- THEME: LEGACY (The Matrix / Fallout Terminal) --- */
+body.theme-legacy {
+  background-color: #050505 !important;
+  color: #22c55e !important; /* Green-500 */
+  font-family: 'Courier New', Courier, monospace !important;
+}
 
+body.theme-legacy * {
+  border-color: #15803d !important; /* Green-700 */
+  box-shadow: none !important; /* Remove Fancy Glows */
+}
+
+/* Force all text/headings to green */
+body.theme-legacy h1, 
+body.theme-legacy h2, 
+body.theme-legacy h3, 
+body.theme-legacy p, 
+body.theme-legacy span {
+  color: #22c55e !important;
+  text-shadow: 0 0 5px rgba(34, 197, 94, 0.5); /* CRT Glow */
+}
+
+/* Invert the background logic for cards */
+body.theme-legacy main,
+body.theme-legacy section div {
+  background-color: #000000 !important;
+}
+
+/* Change accent colors (blue/purple) to Green */
+body.theme-legacy .bg-blue-500,
+body.theme-legacy .bg-purple-500,
+body.theme-legacy .bg-orange-500,
+body.theme-legacy .text-blue-500,
+body.theme-legacy .text-purple-500,
+body.theme-legacy .text-orange-500 {
+  background-color: transparent !important;
+  color: #22c55e !important;
+}
+
+
+/* --- THEME: STEALTH (Night Ops / Red Light) --- */
+body.theme-stealth {
+  background-color: #09090b !important; /* Zinc-950 */
+  color: #7f1d1d !important; /* Red-900 (Dark text) */
+}
+
+body.theme-stealth h1, body.theme-stealth h2, body.theme-stealth h3 {
+  color: #991b1b !important; /* Red-800 */
+}
+
+body.theme-stealth p, body.theme-stealth span {
+  color: #52525b !important; /* Zinc-600 (Low Viz) */
+}
+
+body.theme-stealth div {
+  border-color: #450a0a !important; /* Red-950 */
+  background-color: #09090b !important;
+}
+
+/* Dim all glows */
+body.theme-stealth .shadow-\[0_0_15px_rgba\(249\,115\,22\,0\.5\)\] {
+    box-shadow: none !important;
+}

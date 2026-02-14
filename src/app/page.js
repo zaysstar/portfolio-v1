@@ -174,8 +174,8 @@ export default function Home() {
     "Welcome to Zay's Terminal!",
     "CodePath Certificates Available to Unlock!",
     "Current Location: Denmark, SC",
-    "Status: IDLE",
-    "Contact me for collaborations!",
+    "Be sure to contact me for collaborations!",
+    ""
   ];
 
   return (
@@ -203,7 +203,7 @@ export default function Home() {
         {/* LIVE STATUS BOX (Stays at the very top center) */}
           {(() => {
             // --- 1. CONFIGURATION: CHANGE THIS VARIABLE TO SWAP MODES ---
-            const CURRENT_MODE = "i";
+            const CURRENT_MODE = "df"; 
 
             // --- 2. DEFINITIONS FOR EACH MODE ---
             const MODES = {
@@ -384,13 +384,13 @@ export default function Home() {
       </section>
 
     
-    {/* NAVIGATION GRID (The 4 Colored Cards) */}
-      <section className="max-w-6xl mx-auto px-4 mb-20">
+    {/* NAVIGATION GRID (The Colored Cards) */}
+      <section className="max-w-6xl mx-auto px-1 mb-10">
         
         {/* GRID: 1 col mobile, 2 cols tablet/desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 auto-rows-[minmax(250px,auto)]">
           
-          {/* 1. RED CARD (Stats) - MOVED TO FIRST POSITION */}
+          {/* 1. RED CARD (Stats) */}
           <Link href="/bio-statss" className="group block relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-red-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(239,68,68,0.1)]">
               <div className="absolute inset-0 bg-[linear-gradient(rgba(239,68,68,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(239,68,68,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
               <div className="w-14 h-14 bg-red-900/20 rounded-full flex items-center justify-center border border-red-500/30 group-hover:scale-110 transition-transform duration-300 relative z-10">
@@ -426,7 +426,7 @@ export default function Home() {
               </div>
           </Link>
 
-          {/* 4. PURPLE CARD (Comms) */}
+          {/* 4. PURPLE CARD (Communications) */}
           <Link href="/comms" className="group block relative overflow-hidden bg-slate-900 border border-slate-800 rounded-lg p-8 flex flex-col items-center justify-center gap-4 transition-all hover:border-purple-500/50 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]">
               {/* Purple Grid BG */}
               <div className="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>

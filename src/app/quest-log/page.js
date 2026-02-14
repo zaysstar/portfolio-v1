@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion'; // Import for animations
 
 export default function QuestLogPage() {
@@ -37,8 +37,8 @@ export default function QuestLogPage() {
       image: "/528451364_17872792683407398_4384365415726032581_n.jpg",
       subRoles: [],
       previousRoles: [],
-      
     },
+
     {
       id: "males-01",
       levels: ["CURRENT", "MEMBER_POSITION"],
@@ -71,7 +71,7 @@ export default function QuestLogPage() {
       levels: ["CURRENT", "OFFICER_POSITION"],
       title: "Acting President",
       org: "Pre-Alumni Council",
-      date: "September 2023 - present",
+      date: "September 2025 - present",
       desc: "Leading the bridge between current students and alumni. Spearheading fundraising initiatives and fostering school pride through the UNCF network.",
       loot: ["Leadership", "Fundraising", "Alumni Relations"],
       image: null,
@@ -137,7 +137,7 @@ export default function QuestLogPage() {
       id: "naba-01",
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Collegiate Member at-Large",
-      org: "NABA (Southern Region)",
+      org: "NABA - Southern Region",
       date: "July 2025 - present",
       desc: "Participating in financial literacy workshops and professional development conferences.",
       loot: ["Finance", "Professionalism"],
@@ -150,14 +150,13 @@ export default function QuestLogPage() {
       id: "nsbe-01",
       levels: ["CURRENT", "GUILD_MEMBER"],
       title: "Collegiate Member at-Large",
-      org: "NSBE (Region II)",
+      org: "NSBE - Region II",
       date: "June 2025 - present",
       desc: "Engaging in STEM outreach and engineering networking events.",
       loot: ["Engineering", "STEM Outreach"],
       image: null,
-      subRoles: [],
+      subRoles: [ ],
       previousRoles: [],
-      
     },
     {
       id: "sva-01",
@@ -194,7 +193,7 @@ export default function QuestLogPage() {
     },
     // --- 2024 START ---
     {
-      id: "honors-01",
+      id: "hsa-01",
       levels: ["OFFLINE", "MEMBER_POSITION"],
       title: "Member",
       org: "W. Franklin Evans Honors Student Association",
@@ -214,7 +213,7 @@ export default function QuestLogPage() {
       
     },
     {
-      id: "stem-club-01",
+      id: "stem-01",
       levels: ["FORMER", "CHAIR_POSITION"],
       title: "Graphic Design Chair",
       org: "STEM Club Committee",
@@ -236,10 +235,10 @@ export default function QuestLogPage() {
     {
       id: "hcasc-01",
       levels: ["CURRENT", "CAPTAIN"],
-      title: "Team Captain (2026)",
+      title: "Team Captain - 2026",
       org: "Honda Campus All Star Challenge",
       date: "February 2024 - present",
-      desc: "Leading the varsity academic quiz bowl team. Analyzing competition strategies and competing in National Qualifying Tournaments.",
+      desc: "Leading the varsity academic quiz bowl team. ",
       loot: ["Trivia", "Strategy", "Quick Thinking"],
       image: null,
       subRoles: [
@@ -247,7 +246,7 @@ export default function QuestLogPage() {
           levels: ["CURRENT", "COMPETITOR"],
           title: "NQT Traveling Member (3x)",
           date: "January 2024 - present",
-          desc: "Represented the university at three separate qualifying tournaments."
+          desc: "Represented the university at qualifying tournaments around the USA. (2024 & 2025, North Carolina A&T State University; 2026, Winston-Salem State University)."
         }
       ],
       previousRoles: [],
@@ -278,7 +277,7 @@ export default function QuestLogPage() {
       id: "choir-01",
       levels: ["CURRENT", "MEMBER_POSITION"],
       title: "Member (Tenor)",
-      org: "VU Choir / Singing Tigers",
+      org: "Voorhees University Singing Choir/Tigers",
       date: "January 2023 - present",
       desc: "Performing as a Tenor in the university's premier vocal ensemble. Representing the institution at cultural and formal events.",
       loot: ["Performance", "Teamwork"],
@@ -338,8 +337,8 @@ export default function QuestLogPage() {
             </p>
         </div>
 
-        <Link href="/" className="group flex items-center gap-2 px-5 py-2 bg-slate-900 border border-slate-700 rounded hover:border-green-500 transition-all">
-            <span className="text-slate-400 group-hover:text-green-400 text-sm font-mono">&lt; RETURN_TO_BASE</span>
+        <Link href="/" className="group flex items-center gap-2 px-5 py-2 bg-slate-900 border border-slate-700 rounded hover:border-blue-500 transition-all">
+            <span className="text-slate-400 group-hover:text-blue-400 text-sm font-mono">&lt; RETURN_TO_BASE</span>
         </Link>
       </header>
 
@@ -405,21 +404,21 @@ export default function QuestLogPage() {
                                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
                                     Active Sub-Routines
                                 </h4>
-                                <div className="space-y-3">
+                                  <div className="space-y-3">
                                     {quest.subRoles.map((role, idx) => (
                                         <div key={idx}>
                                             <div className="flex flex-wrap items-center gap-2 mb-1">
                                                 <span className="text-sm font-bold text-slate-200">
                                                     {role.title}
                                                 </span>
+                                                {role.levels.map((lvl, i) => (
+                                                  <span key={i} className="text-[10px] font-mono text-blue-500 border border-blue-500/30 bg-blue-500/5 px-2 py-0.5 rounded uppercase tracking-wider">
+                                                      {lvl.replace("_", " ")}
+                                                  </span>
+                                                  ))}
                                                 <span className="text-[10px] font-mono text-slate-600 border border-slate-800 px-1 rounded">
                                                     {role.date}
                                                 </span>
-                                                {role.levels && role.levels.includes("TRAVEL_QUEST") && (
-                                                    <span className="text-[9px] bg-purple-900/30 border border-purple-500/30 text-purple-300 px-1.5 rounded">
-                                                        TRAVEL QUEST
-                                                    </span>
-                                                )}
                                             </div>
                                             {role.desc && (
                                                 <p className="text-xs text-slate-400 leading-relaxed">
@@ -446,6 +445,11 @@ export default function QuestLogPage() {
                                                 <span className="text-sm font-bold text-slate-500 decoration-slate-600 decoration-2">
                                                     {role.title}
                                                 </span>
+                                                {role.levels.map((lvl, i) => (
+                                                  <span key={i} className="text-[10px] font-mono text-slate-500 border border-slate-500/30 bg-blue-500/5 px-2 py-0.5 rounded uppercase tracking-wider">
+                                                      {lvl.replace("_", " ")}
+                                                  </span>
+                                                  ))}
                                                 <span className="text-[10px] font-mono text-slate-600 border border-slate-800 px-1 rounded">
                                                     {role.date}
                                                 </span>

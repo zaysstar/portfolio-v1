@@ -65,7 +65,7 @@ export default function AchievementsPage() {
         },
         { 
             title: "WEB103: Advanced Web Development", 
-            status: "LOCKED",
+            status: "IN PROGRESS",
             url: "#" 
         },
       ]
@@ -152,8 +152,8 @@ export default function AchievementsPage() {
             </p>
         </div>
 
-        <Link href="/" className="group flex items-center gap-2 px-5 py-2 bg-slate-900 border border-slate-700 rounded hover:border-green-500 transition-all">
-            <span className="text-slate-400 group-hover:text-green-400 text-sm font-mono">&lt; RETURN_TO_BASE</span>
+        <Link href="/" className="group flex items-center gap-2 px-5 py-2 bg-slate-900 border border-slate-700 rounded hover:border-yellow-500 transition-all">
+            <span className="text-slate-400 group-hover:text-yellow-400 text-sm font-mono">&lt; RETURN_TO_BASE</span>
         </Link>
       </header>
 
@@ -163,7 +163,8 @@ export default function AchievementsPage() {
           {achievements.map((item, index) => {
             
             const unlocked = item.subQuests ? item.subQuests.filter(q => q.status === "CERTIFIED") : [];
-            const locked = item.subQuests ? item.subQuests.filter(q => q.status === "LOCKED" || q.status === "IN PROGRESS") : [];
+            const locked = item.subQuests ? item.subQuests.filter(q => q.status === "LOCKED") : [];
+            const inprogress = item.subQuests ? item.subQuests.filter(q => q.status === "IN PROGRESS") : [];
 
             return (
                 <motion.div 
@@ -261,7 +262,7 @@ export default function AchievementsPage() {
                                 <div className="mt-4 pt-4 border-t border-slate-800/50 w-full">
                                     <div className="text-[10px] text-slate-600 font-mono uppercase mb-3 tracking-widest flex items-center gap-2">
                                         <span className="w-1.5 h-1.5 bg-slate-700 rounded-full"></span>
-                                        Locked / In Progress
+                                        Locked
                                     </div>
                                     <div className="space-y-3">
                                         {locked.map((sub, j) => (
@@ -272,7 +273,28 @@ export default function AchievementsPage() {
                                                         {sub.title}
                                                     </span>
                                                 </div>
-                                                <span className="text-[10px] text-slate-600 font-mono uppercase sm:ml-auto">{sub.status}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* --- CERTIFICATES IN-PROGRESS --- */}
+                            {inprogress.length > 0 && (
+                                <div className="mt-4 pt-4 border-t border-slate-800/50 w-full">
+                                    <div className="text-[10px] text-slate-600 font-mono uppercase mb-3 tracking-widest flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 bg-slate-700 rounded-full"></span>
+                                        In Progress
+                                    </div>
+                                    <div className="space-y-3">
+                                        {inprogress.map((sub, j) => (
+                                            <div key={j} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 bg-slate-900/20 px-3 py-2 rounded border border-dashed border-slate-800 w-full opacity-60">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-slate-600 text-xs">🔒</span>
+                                                    <span className="text-xs text-slate-500 font-mono">
+                                                        {sub.title}
+                                                    </span>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

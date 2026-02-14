@@ -40,22 +40,22 @@ export default function AchievementsPage() {
         { 
             title: "WEB101: Intro to Web Development (HONORS)", 
             status: "CERTIFIED",
-            url: "#" 
+            url: "/Izayah Rahming.pdf" 
         },
         { 
             title: "TIP102: Intermediate Technical Interview Prep", 
             status: "CERTIFIED",
-            url: "#" 
+            url: "/Izayah Rahming (1).pdf" 
         },
         { 
             title: "WEB102: Intermediate Web Development", 
             status: "CERTIFIED",
-            url: "#" 
+            url: "/Izayah Rahming (2).pdf" 
         },
         { 
             title: "AND101: Intro to Android Development", 
             status: "CERTIFIED",
-            url: "#" 
+            url: "/Izayah Rahming (3).pdf" 
         },
 
         { 
@@ -78,6 +78,7 @@ export default function AchievementsPage() {
       desc: "Applied and selected for Extern's free national program that connects top students with industry leaders. Currently completing specialized training and projects in partnership with major companies.",
       loot: ["Extern Certificate", "Industry Mentorship", "Exclusive Projects"],
       image: "/extern.jpg",
+      url: "https://extern.com/",
       
       subQuests: [
         { 
@@ -111,7 +112,7 @@ export default function AchievementsPage() {
       date: "March 2025",
       desc: "Inducted into the prestigious national honor society for juniors and seniors with a GPA of 3.3 or higher. Represents the top tier of scholarly achievement.",
       loot: ["Scholastic Discipline", "High GPA"],
-      image: null
+      image: "/The_crest_of_Alpha_Kappa_Mu.jpg"
     },
 
     {
@@ -132,7 +133,7 @@ export default function AchievementsPage() {
       date: "March 2024 - present",
       desc: "Consistently recognized for superior academic performance. Inducted into the W. Franklin Evans Honors College. Maintained a 3.73 Major GPA while balancing leadership roles.",
       loot: ["President's List (1x)", "Dean's List (5x)", "Academic Medals (2x)"],
-      image: "/images/academic-awards.jpg"
+      image: "/WFE-Honors-college-seal-thumbnail.jpg"
     },
   ];
 

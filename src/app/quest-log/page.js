@@ -25,7 +25,7 @@ export default function QuestLogPage() {
   
   // --- LEADERSHIP & INVOLVEMENT DATA ---
   const leadershipQuests = [
-    // --- 2026 START ---
+    // --- 2026 START --
     {
       id: "bbb-01",
       levels: ["CURRENT", "OFFICER_POSITION"],
@@ -50,17 +50,17 @@ export default function QuestLogPage() {
       subRoles: [],
       previousRoles: [],    
     },
-    
+
     // --- 2025 START ---
     {
       id: "uncf-ambassador-01",
       levels: ["CURRENT", "AMBASSADOR"],
       title: "UNCF Student Ambassador",
       org: "United Negro College Fund",
-      date: "November 2025 - present",
+      date: "December 2025 - present",
       desc: "Selected to represent the university student body. Organizing campus events and driving scholarship awareness to help peers secure funding.",
       loot: ["Networking", "Event Planning", "Advocacy"],
-      image: "/images/uncf-ambassador.jpg",
+      image: "/UNCF-Logo-Gallery-Entry.jpg",
       subRoles: [],
       previousRoles: [],
       
@@ -73,7 +73,7 @@ export default function QuestLogPage() {
       date: "September 2025 - present",
       desc: "Leading the bridge between current students and alumni. Spearheading fundraising initiatives and fostering school pride through the UNCF network.",
       loot: ["Leadership", "Fundraising", "Alumni Relations"],
-      image: null,
+      image: "/365744739_2233064440416989_3253236005424441544_n.jpg",
       subRoles: [
         {
             levels: ["MEMBER"],
@@ -84,6 +84,18 @@ export default function QuestLogPage() {
       ],
       previousRoles: [],
       
+    },
+        {
+      id: "vu-board-01",
+      levels: ["CURRENT", "OFFICER_POSITION"],
+      title: "Multimedia Manager",
+      org: "President's Student Advisory Board",
+      date: "September 2025 - present",
+      desc: "Managing multimedia content creation and distribution for the council. Collaborating with the President's office to produce engaging visual materials.",
+      loot: ["Content Creation", "Media Management", "Public Relations"],
+      image: null,
+      subRoles: [],
+      previousRoles: [],
     },
     {
       id: "sga-01",
@@ -105,19 +117,6 @@ export default function QuestLogPage() {
       ],
       
     },
-    {
-      id: "vu-board-01",
-      levels: ["CURRENT", "OFFICER_POSITION"],
-      title: "Multimedia Manager",
-      org: "VU President's Student Advisory Board",
-      date: "September 2025 - present",
-      desc: "Managing multimedia content creation and distribution for the President's Student Advisory Board. Collaborating with the President's office to produce engaging visual materials.",
-      loot: ["Content Creation", "Media Mgmt", "Public Relations"],
-      image: "/images/sga-team.jpg",
-      subRoles: [],
-      previousRoles: [],
-      
-    },
     // --- ACADEMIC & PROFESSIONAL ORGS ---
     {
       id: "cfa-01",
@@ -127,7 +126,7 @@ export default function QuestLogPage() {
       date: "September 2025 - present",
       desc: "Receiving financial literacy training and mentorship through the CFA program.",
       loot: ["Finance", "Professionalism"],
-      image: null,
+      image: "/470487896_561674153164884_5941540305637584959_n.jpg",
       subRoles: [],
       previousRoles: [],
       
@@ -140,7 +139,7 @@ export default function QuestLogPage() {
       date: "July 2025 - present",
       desc: "Participating in financial literacy workshops and professional development conferences.",
       loot: ["Finance", "Professionalism"],
-      image: null,
+      image: "/SUoX2cCy_400x400.png",
       subRoles: [],
       previousRoles: [],
       
@@ -153,7 +152,7 @@ export default function QuestLogPage() {
       date: "June 2025 - present",
       desc: "Engaging in STEM outreach and engineering networking events.",
       loot: ["Engineering", "STEM Outreach"],
-      image: null,
+      image: "/nsbe.png",
       subRoles: [ ],
       previousRoles: [],
     },
@@ -165,7 +164,7 @@ export default function QuestLogPage() {
       date: "April 2025 - present",
       desc: "Selected for the top-tier leadership summit in Washington D.C. Focused on advocacy and organizational management for student veterans.",
       loot: ["Policy", "Federal Advocacy"],
-      image: "/images/sva-dc-trip.jpg",
+      image: "/SVA_Seal_Transparent_Background.png",
       subRoles: [
         { 
           levels: ["DELEGATE", "TRAVEL_QUEST"],
@@ -183,9 +182,9 @@ export default function QuestLogPage() {
       title: "Member",
       org: "CTRL-DEV Technology Club",
       date: "January 2025 - present",
-      desc: "Collaborating with peers on software development projects, participating in coding workshops, and keeping up with emerging tech trends.",
-      loot: ["Software Dev", "Networking", "Tech Trends"],
-      image: null, 
+      desc: "Collaborating with peers on software development projects, participating in coding workshops, and keeping up with emerging trends in technology.",
+      loot: ["Software Dev", "Robotics", "Tech Trends"],
+      image: "/483593284_1001163218581561_7306143933289727446_n.jpg", 
       subRoles: [],
       previousRoles: [],
       
@@ -199,7 +198,7 @@ export default function QuestLogPage() {
       date: "May 2024 - December 2025",
       desc: "Participating in academic excellence workshops and community service projects tailored for honors students.",
       loot: ["Academics", "Service"],
-      image: null,
+      image: "/WFE-Honors-college-seal-thumbnail.jpg",
       subRoles: [],
       previousRoles: [
         {
@@ -234,17 +233,17 @@ export default function QuestLogPage() {
     {
       id: "hcasc-01",
       levels: ["CURRENT", "CAPTAIN"],
-      title: "Team Captain - 2026",
+      title: "Team Captain [2026]",
       org: "Honda Campus All Star Challenge",
-      date: "February 2024 - present",
+      date: "January 2026 - present",
       desc: "Leading the varsity academic quiz bowl team. ",
       loot: ["Trivia", "Strategy", "Quick Thinking"],
-      image: null,
+      image: "/hcasc.jpeg",
       subRoles: [
         {
           levels: ["CURRENT", "COMPETITOR"],
           title: "NQT Traveling Member (3x)",
-          date: "January 2024 - present",
+          date: "February 2024 - present",
           desc: "Represented the university at qualifying tournaments around the USA. (2024 & 2025, North Carolina A&T State University; 2026, Winston-Salem State University)."
         }
       ],
@@ -260,7 +259,7 @@ export default function QuestLogPage() {
       date: "January 2023 - present",
       desc: "Supporting international student integration and cultural exchange events.",
       loot: ["Culture", "Networking"],
-      image: null,
+      image: "/isa.jpg",
       subRoles: [],
       previousRoles: [
         {
@@ -276,7 +275,7 @@ export default function QuestLogPage() {
       id: "choir-01",
       levels: ["CURRENT", "MEMBER_POSITION"],
       title: "Member (Tenor)",
-      org: "Voorhees University Singing Choir/Tigers",
+      org: "Voorhees University Singing Tigers / Gospel Choir",
       date: "January 2023 - present",
       desc: "Performing as a Tenor in the university's premier vocal ensemble. Representing the institution at cultural and formal events.",
       loot: ["Performance", "Teamwork"],
@@ -305,8 +304,8 @@ export default function QuestLogPage() {
       org: "A.C.E. Peer Tutoring Program",
       date: "August 2023 - April 2025",
       desc: "Delivered personalized academic support to 30+ CS/Cybersecurity students. Developed tailored lesson plans and study strategies to improve student performance and confidence.",
-      loot: ["Mentorship", "Pedagogy", "Data Entry"],
-      image: "/images/ace-tutoring.jpg",
+      loot: ["Mentorship", "Study Skills", "Data Entry"],
+      image: "/ace-2.png",
       subRoles: [],
       previousRoles: [
         {
@@ -353,14 +352,14 @@ export default function QuestLogPage() {
                 <motion.div 
                     key={index} 
                     className="relative pl-8 md:pl-9 group"
-                    initial={{ opacity: 0, y: 50 }}         // Start: Invisible & moved down
-                    whileInView={{ opacity: 1, y: 0 }}      // End: Visible & active position
+                    initial={{ opacity: 0, y: 50 }}         
+                    whileInView={{ opacity: 1, y: 0 }}      
                     transition={{ 
                         duration: 0.5, 
                         ease: "easeOut",
-                        delay: index * 0.05 // Stagger effect based on index
+                        delay: index * 0.05 
                     }}
-                    viewport={{ once: true, margin: "-25px" }} // Trigger when 10px into view
+                    viewport={{ once: true, margin: "-25px" }} 
                 >
                 
                     {/* THE NODE (Blue Nodes) */}
@@ -475,24 +474,24 @@ export default function QuestLogPage() {
 
                         </div>
 
-                        {/* RIGHT SIDE: SQUARE TECH BADGE (Order-1 on Mobile) */}
+                        {/* RIGHT SIDE: SPINNING BADGE (Replaces the square/radar one) */}
                         <div className="order-1 md:order-2 shrink-0 relative w-24 h-24 md:w-28 md:h-28 self-center md:self-start">
                             
-                            {/* 1. STATUS DOT (Online/Offline) */}
+                            {/* 1. STATUS DOT (Kept from your code) */}
                             <div className={`absolute -top-1 -right-1 z-20 w-4 h-4 rounded-full border-2 border-slate-900 transition-colors duration-500 ${
                                 isOnline 
                                 ? "bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)] animate-pulse" 
                                 : "bg-slate-400/50 border-slate-800"
                             }`}></div>
 
-                            {/* 2. MAIN CONTAINER (Rounded Square) */}
-                            <div className="w-full h-full rounded-2xl bg-slate-900 border border-slate-800 relative overflow-hidden group-hover:border-blue-500/50 transition-colors">
+                            {/* 2. THE NEW SPINNING BADGE CONTAINER (Adapted to Blue) */}
+                            <div className="relative w-full h-full rounded-full p-1 bg-gradient-to-br from-slate-800 to-slate-950 border border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.1)] flex items-center justify-center overflow-hidden">
                                 
-                                {/* 3. RADAR SWEEP EFFECT (The Rotating Border) */}
-                                <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(59,130,246,0.5)_90deg,transparent_180deg)] animate-[spin_4s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                                {/* 4. IMAGE MASK (Slightly smaller to reveal border) */}
-                                <div className="absolute inset-[2px] rounded-2xl bg-slate-950 overflow-hidden flex items-center justify-center">
+                                {/* Spinning Ring */}
+                                <div className="absolute inset-0 rounded-full border-[2px] border-blue-500/10 border-t-blue-500/80 animate-[spin_3s_linear_infinite] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                                
+                                {/* Inner Image/Content */}
+                                <div className="w-full h-full rounded-full overflow-hidden bg-black flex items-center justify-center relative z-10">
                                     {quest.image ? (
                                         <img 
                                             src={quest.image} 
@@ -500,7 +499,9 @@ export default function QuestLogPage() {
                                             className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" 
                                         />
                                     ) : (
-                                        <span className="text-3xl font-bold text-slate-700 group-hover:text-blue-500 transition-colors">{quest.org.charAt(0)}</span>
+                                        <span className="text-3xl font-bold text-slate-700 group-hover:text-blue-500 transition-colors">
+                                            {quest.org.charAt(0)}
+                                        </span>
                                     )}
                                 </div>
                             </div>

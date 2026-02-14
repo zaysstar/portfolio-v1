@@ -26,6 +26,26 @@ export default function QuestLogPage() {
   // --- LEADERSHIP & INVOLVEMENT DATA ---
   const leadershipQuests = [
     // --- 2026 START ---
+        {
+      id: "nsbe-02",
+      levels: ["CURRENT", "OFFICER_POSITION"],
+      title: "VU NSBE Secretary",
+      org: "NSBE - Region II",
+      date: "August 2025 - present",
+      desc: "Managing administrative duties for the NSBE chapter. Coordinating meetings, maintaining records, and supporting chapter events.",
+      loot: ["Organization", "Administration"],
+      image: null,
+      subRoles: [
+        { 
+          levels: ["CURRENT", "GUILD_MEMBER"],
+          title: "Collegiate Member at-Large", 
+          date: "June 2025 - present",
+          desc: "Engaging in STEM outreach and engineering networking events." 
+        }
+      ],
+      previousRoles: [],
+    },
+
     {
       id: "bbb-01",
       levels: ["CURRENT", "OFFICER_POSITION"],
